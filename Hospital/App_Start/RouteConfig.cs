@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Hospital
+namespace Hospital.App_Start
 {
     public class RouteConfig
     {
@@ -16,8 +16,9 @@ namespace Hospital
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Default", action = "Index", id = UrlParameter.Optional}
             );
+
         }
     }
 }

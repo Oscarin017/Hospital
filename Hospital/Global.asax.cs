@@ -12,7 +12,7 @@ namespace Hospital
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            App_Start.RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }
 }

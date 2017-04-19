@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dbcf027fc8e6433b83040469a8950bfc" Name="Diagram1">
+        <EntityTypeShape EntityType="HOSPITALModel.CONSULTA" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HOSPITALModel.DETALLE_RECETA" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HOSPITALModel.DOCTOR" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HOSPITALModel.DOCTOR_ESPECIALIDAD" Width="1.5" PointX="6" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HOSPITALModel.ESPECIALIDAD" Width="1.5" PointX="1.5" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HOSPITALModel.HOSPITAL" Width="1.5" PointX="1.5" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HOSPITALModel.HOSPITAL_DOCTOR" Width="1.5" PointX="6" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HOSPITALModel.HOSPITAL_ESPECIALIDAD" Width="1.5" PointX="1.5" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HOSPITALModel.INTERNADO" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HOSPITALModel.MEDICAMENTO" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HOSPITALModel.PACIENTE" Width="1.5" PointX="1.5" PointY="29" IsExpanded="true" />
+        <EntityTypeShape EntityType="HOSPITALModel.RECETA" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HOSPITALModel.VISITA" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <AssociationConnector Association="HOSPITALModel.FK__CONSULTA__ID_DOC__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="HOSPITALModel.FK__CONSULTA__ID_HOS__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="HOSPITALModel.FK__CONSULTA__ID_PAC__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="HOSPITALModel.FK__CONSULTA__ID_REC__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="HOSPITALModel.FK__DETALLE_R__ID_ME__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="HOSPITALModel.FK__DETALLE_R__ID_RE__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="HOSPITALModel.FK__DOCTOR_ES__ID_DO__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="HOSPITALModel.FK__HOSPITAL___ID_DO__22AA2996" ManuallyRouted="false" />
+        <AssociationConnector Association="HOSPITALModel.FK__VISITA__ID_DOCTO__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="HOSPITALModel.FK__DOCTOR_ES__ID_ES__1ED998B2" ManuallyRouted="false" />
+        <AssociationConnector Association="HOSPITALModel.FK__HOSPITAL___ID_ES__15502E78" ManuallyRouted="false" />
+        <AssociationConnector Association="HOSPITALModel.FK__HOSPITAL___ID_HO__145C0A3F" ManuallyRouted="false" />
+        <AssociationConnector Association="HOSPITALModel.FK__HOSPITAL___ID_HO__21B6055D" ManuallyRouted="false" />
+        <AssociationConnector Association="HOSPITALModel.FK__INTERNADO__ID_HO__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="HOSPITALModel.FK__INTERNADO__ID_PA__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="HOSPITALModel.FK__VISITA__ID_INTER__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="HOSPITALModel.FK__VISITA__ID_RECET__32E0915F" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

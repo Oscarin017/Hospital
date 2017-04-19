@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HOSPITALModelStoreContainer" CdmEntityContainer="HOSPITALEntities">
+    <EntitySetMapping Name="CONSULTA">
+      <EntityTypeMapping TypeName="HOSPITALModel.CONSULTA">
+        <MappingFragment StoreEntitySet="CONSULTA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+          <ScalarProperty Name="ID_HOSPITAL" ColumnName="ID_HOSPITAL" />
+          <ScalarProperty Name="ID_DOCTOR" ColumnName="ID_DOCTOR" />
+          <ScalarProperty Name="ID_PACIENTE" ColumnName="ID_PACIENTE" />
+          <ScalarProperty Name="ID_RECETA" ColumnName="ID_RECETA" />
+          <ScalarProperty Name="VISIBLE" ColumnName="VISIBLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DETALLE_RECETA">
+      <EntityTypeMapping TypeName="HOSPITALModel.DETALLE_RECETA">
+        <MappingFragment StoreEntitySet="DETALLE_RECETA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_RECETA" ColumnName="ID_RECETA" />
+          <ScalarProperty Name="ID_MEDICAMENTO" ColumnName="ID_MEDICAMENTO" />
+          <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="VISIBLE" ColumnName="VISIBLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOCTOR">
+      <EntityTypeMapping TypeName="HOSPITALModel.DOCTOR">
+        <MappingFragment StoreEntitySet="DOCTOR">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="APELLIDO" ColumnName="APELLIDO" />
+          <ScalarProperty Name="CEDULA" ColumnName="CEDULA" />
+          <ScalarProperty Name="FECHA_NACIMIENTO" ColumnName="FECHA_NACIMIENTO" />
+          <ScalarProperty Name="SEXO" ColumnName="SEXO" />
+          <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+          <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+          <ScalarProperty Name="VISIBLE" ColumnName="VISIBLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOCTOR_ESPECIALIDAD">
+      <EntityTypeMapping TypeName="HOSPITALModel.DOCTOR_ESPECIALIDAD">
+        <MappingFragment StoreEntitySet="DOCTOR_ESPECIALIDAD">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_DOCTOR" ColumnName="ID_DOCTOR" />
+          <ScalarProperty Name="ID_ESPECIALIDAD" ColumnName="ID_ESPECIALIDAD" />
+          <ScalarProperty Name="VISIBLE" ColumnName="VISIBLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ESPECIALIDAD">
+      <EntityTypeMapping TypeName="HOSPITALModel.ESPECIALIDAD">
+        <MappingFragment StoreEntitySet="ESPECIALIDAD">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="VISIBLE" ColumnName="VISIBLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HOSPITAL">
+      <EntityTypeMapping TypeName="HOSPITALModel.HOSPITAL">
+        <MappingFragment StoreEntitySet="HOSPITAL">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+          <ScalarProperty Name="VISIBLE" ColumnName="VISIBLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HOSPITAL_DOCTOR">
+      <EntityTypeMapping TypeName="HOSPITALModel.HOSPITAL_DOCTOR">
+        <MappingFragment StoreEntitySet="HOSPITAL_DOCTOR">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_HOSPITAL" ColumnName="ID_HOSPITAL" />
+          <ScalarProperty Name="ID_DOCTOR" ColumnName="ID_DOCTOR" />
+          <ScalarProperty Name="VISIBLE" ColumnName="VISIBLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HOSPITAL_ESPECIALIDAD">
+      <EntityTypeMapping TypeName="HOSPITALModel.HOSPITAL_ESPECIALIDAD">
+        <MappingFragment StoreEntitySet="HOSPITAL_ESPECIALIDAD">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CUARTOS" ColumnName="CUARTOS" />
+          <ScalarProperty Name="CUARTOS_LIBRES" ColumnName="CUARTOS_LIBRES" />
+          <ScalarProperty Name="PISO" ColumnName="PISO" />
+          <ScalarProperty Name="ID_HOSPITAL" ColumnName="ID_HOSPITAL" />
+          <ScalarProperty Name="ID_ESPECIALIDAD" ColumnName="ID_ESPECIALIDAD" />
+          <ScalarProperty Name="VISIBLE" ColumnName="VISIBLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INTERNADO">
+      <EntityTypeMapping TypeName="HOSPITALModel.INTERNADO">
+        <MappingFragment StoreEntitySet="INTERNADO">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="INGRESO" ColumnName="INGRESO" />
+          <ScalarProperty Name="SALIDA" ColumnName="SALIDA" />
+          <ScalarProperty Name="ID_PACIENTE" ColumnName="ID_PACIENTE" />
+          <ScalarProperty Name="ID_HOSPITAL_ESPECIALIDAD" ColumnName="ID_HOSPITAL_ESPECIALIDAD" />
+          <ScalarProperty Name="VISIBLE" ColumnName="VISIBLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MEDICAMENTO">
+      <EntityTypeMapping TypeName="HOSPITALModel.MEDICAMENTO">
+        <MappingFragment StoreEntitySet="MEDICAMENTO">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="INGREDIENTE_ACTIVO" ColumnName="INGREDIENTE_ACTIVO" />
+          <ScalarProperty Name="PIEZAS" ColumnName="PIEZAS" />
+          <ScalarProperty Name="VISIBLE" ColumnName="VISIBLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PACIENTE">
+      <EntityTypeMapping TypeName="HOSPITALModel.PACIENTE">
+        <MappingFragment StoreEntitySet="PACIENTE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="APELLIDO" ColumnName="APELLIDO" />
+          <ScalarProperty Name="FECHA_NACIMIENTO" ColumnName="FECHA_NACIMIENTO" />
+          <ScalarProperty Name="SEXO" ColumnName="SEXO" />
+          <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+          <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+          <ScalarProperty Name="CORREO_ELECTRONICO" ColumnName="CORREO_ELECTRONICO" />
+          <ScalarProperty Name="VISIBLE" ColumnName="VISIBLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RECETA">
+      <EntityTypeMapping TypeName="HOSPITALModel.RECETA">
+        <MappingFragment StoreEntitySet="RECETA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="VISIBLE" ColumnName="VISIBLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VISITA">
+      <EntityTypeMapping TypeName="HOSPITALModel.VISITA">
+        <MappingFragment StoreEntitySet="VISITA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+          <ScalarProperty Name="ID_DOCTOR" ColumnName="ID_DOCTOR" />
+          <ScalarProperty Name="ID_INTERNADO" ColumnName="ID_INTERNADO" />
+          <ScalarProperty Name="ID_RECETA" ColumnName="ID_RECETA" />
+          <ScalarProperty Name="VISIBLE" ColumnName="VISIBLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

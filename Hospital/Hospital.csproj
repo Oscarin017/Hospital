@@ -42,10 +42,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -87,19 +95,98 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\style.css" />
     <Content Include="Global.asax" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\jquery-3.2.1.js" />
+    <Content Include="Models\Hospital.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Hospital.Context.cs</LastGenOutput>
+      <DependentUpon>Hospital.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Hospital.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Hospital.edmx</DependentUpon>
+      <LastGenOutput>Hospital1.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CONSULTA.cs">
+      <DependentUpon>Hospital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DETALLE_RECETA.cs">
+      <DependentUpon>Hospital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DOCTOR.cs">
+      <DependentUpon>Hospital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DOCTOR_ESPECIALIDAD.cs">
+      <DependentUpon>Hospital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ESPECIALIDAD.cs">
+      <DependentUpon>Hospital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Hospital.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Hospital.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HOSPITAL.cs">
+      <DependentUpon>Hospital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Hospital.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Hospital.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Hospital1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Hospital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HOSPITAL_DOCTOR.cs">
+      <DependentUpon>Hospital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HOSPITAL_ESPECIALIDAD.cs">
+      <DependentUpon>Hospital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\INTERNADO.cs">
+      <DependentUpon>Hospital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MEDICAMENTO.cs">
+      <DependentUpon>Hospital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PACIENTE.cs">
+      <DependentUpon>Hospital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RECETA.cs">
+      <DependentUpon>Hospital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VISITA.cs">
+      <DependentUpon>Hospital.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
+    <EntityDeploy Include="Models\Hospital.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Hospital.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Hospital.edmx.diagram">
+      <DependentUpon>Hospital.edmx</DependentUpon>
+    </Content>
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -109,8 +196,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
