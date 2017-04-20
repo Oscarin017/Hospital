@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HOSPITALModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CONSULTA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FECHA" Type="datetime" />
+    <Property Name="ID_HOSPITAL" Type="int" />
+    <Property Name="ID_DOCTOR" Type="int" />
+    <Property Name="ID_PACIENTE" Type="int" />
+    <Property Name="ID_RECETA" Type="int" />
+    <Property Name="VISIBLE" Type="bit" />
+  </EntityType>
+  <EntityType Name="DETALLE_RECETA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_RECETA" Type="int" />
+    <Property Name="ID_MEDICAMENTO" Type="int" />
+    <Property Name="CANTIDAD" Type="int" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="250" />
+    <Property Name="VISIBLE" Type="bit" />
+  </EntityType>
+  <EntityType Name="DOCTOR">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="100" />
+    <Property Name="APELLIDO" Type="varchar" MaxLength="100" />
+    <Property Name="CEDULA" Type="varchar" MaxLength="20" />
+    <Property Name="FECHA_NACIMIENTO" Type="datetime" />
+    <Property Name="SEXO" Type="char" MaxLength="1" />
+    <Property Name="DIRECCION" Type="varchar" MaxLength="200" />
+    <Property Name="TELEFONO" Type="varchar" MaxLength="10" />
+    <Property Name="VISIBLE" Type="bit" />
+  </EntityType>
+  <EntityType Name="DOCTOR_ESPECIALIDAD">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_DOCTOR" Type="int" />
+    <Property Name="ID_ESPECIALIDAD" Type="int" />
+    <Property Name="VISIBLE" Type="bit" />
+  </EntityType>
+  <EntityType Name="ESPECIALIDAD">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="100" />
+    <Property Name="VISIBLE" Type="bit" />
+  </EntityType>
+  <EntityType Name="HOSPITAL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="100" />
+    <Property Name="DIRECCION" Type="varchar" MaxLength="200" />
+    <Property Name="VISIBLE" Type="bit" />
+  </EntityType>
+  <EntityType Name="HOSPITAL_DOCTOR">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_HOSPITAL" Type="int" />
+    <Property Name="ID_DOCTOR" Type="int" />
+    <Property Name="VISIBLE" Type="bit" />
+  </EntityType>
+  <EntityType Name="HOSPITAL_ESPECIALIDAD">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CUARTOS" Type="int" />
+    <Property Name="CUARTOS_LIBRES" Type="int" />
+    <Property Name="PISO" Type="int" />
+    <Property Name="ID_HOSPITAL" Type="int" />
+    <Property Name="ID_ESPECIALIDAD" Type="int" />
+    <Property Name="VISIBLE" Type="bit" />
+  </EntityType>
+  <EntityType Name="INTERNADO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="INGRESO" Type="datetime" />
+    <Property Name="SALIDA" Type="datetime" />
+    <Property Name="ID_PACIENTE" Type="int" />
+    <Property Name="ID_HOSPITAL_ESPECIALIDAD" Type="int" />
+    <Property Name="VISIBLE" Type="bit" />
+  </EntityType>
+  <EntityType Name="MEDICAMENTO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="50" />
+    <Property Name="INGREDIENTE_ACTIVO" Type="varchar" MaxLength="100" />
+    <Property Name="PIEZAS" Type="int" />
+    <Property Name="VISIBLE" Type="bit" />
+  </EntityType>
+  <EntityType Name="PACIENTE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="100" />
+    <Property Name="APELLIDO" Type="varchar" MaxLength="100" />
+    <Property Name="FECHA_NACIMIENTO" Type="datetime" />
+    <Property Name="SEXO" Type="char" MaxLength="1" />
+    <Property Name="DIRECCION" Type="varchar" MaxLength="200" />
+    <Property Name="TELEFONO" Type="varchar" MaxLength="10" />
+    <Property Name="CORREO_ELECTRONICO" Type="varchar" MaxLength="100" />
+    <Property Name="VISIBLE" Type="bit" />
+  </EntityType>
+  <EntityType Name="RECETA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VISIBLE" Type="bit" />
+  </EntityType>
+  <EntityType Name="VISITA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FECHA" Type="datetime" />
+    <Property Name="ID_DOCTOR" Type="int" />
+    <Property Name="ID_INTERNADO" Type="int" />
+    <Property Name="ID_RECETA" Type="int" />
+    <Property Name="VISIBLE" Type="bit" />
+  </EntityType>
+  <Association Name="FK__CONSULTA__ID_DOC__286302EC">
+    <End Role="DOCTOR" Type="Self.DOCTOR" Multiplicity="0..1" />
+    <End Role="CONSULTA" Type="Self.CONSULTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCTOR">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CONSULTA">
+        <PropertyRef Name="ID_DOCTOR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CONSULTA__ID_HOS__276EDEB3">
+    <End Role="HOSPITAL" Type="Self.HOSPITAL" Multiplicity="0..1" />
+    <End Role="CONSULTA" Type="Self.CONSULTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HOSPITAL">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CONSULTA">
+        <PropertyRef Name="ID_HOSPITAL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CONSULTA__ID_PAC__29572725">
+    <End Role="PACIENTE" Type="Self.PACIENTE" Multiplicity="0..1" />
+    <End Role="CONSULTA" Type="Self.CONSULTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PACIENTE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CONSULTA">
+        <PropertyRef Name="ID_PACIENTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CONSULTA__ID_REC__2A4B4B5E">
+    <End Role="RECETA" Type="Self.RECETA" Multiplicity="0..1" />
+    <End Role="CONSULTA" Type="Self.CONSULTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RECETA">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CONSULTA">
+        <PropertyRef Name="ID_RECETA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DETALLE_R__ID_ME__36B12243">
+    <End Role="MEDICAMENTO" Type="Self.MEDICAMENTO" Multiplicity="0..1" />
+    <End Role="DETALLE_RECETA" Type="Self.DETALLE_RECETA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MEDICAMENTO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DETALLE_RECETA">
+        <PropertyRef Name="ID_MEDICAMENTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DETALLE_R__ID_RE__35BCFE0A">
+    <End Role="RECETA" Type="Self.RECETA" Multiplicity="0..1" />
+    <End Role="DETALLE_RECETA" Type="Self.DETALLE_RECETA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RECETA">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DETALLE_RECETA">
+        <PropertyRef Name="ID_RECETA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DOCTOR_ES__ID_DO__1DE57479">
+    <End Role="DOCTOR" Type="Self.DOCTOR" Multiplicity="0..1" />
+    <End Role="DOCTOR_ESPECIALIDAD" Type="Self.DOCTOR_ESPECIALIDAD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCTOR">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DOCTOR_ESPECIALIDAD">
+        <PropertyRef Name="ID_DOCTOR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DOCTOR_ES__ID_ES__1ED998B2">
+    <End Role="ESPECIALIDAD" Type="Self.ESPECIALIDAD" Multiplicity="0..1" />
+    <End Role="DOCTOR_ESPECIALIDAD" Type="Self.DOCTOR_ESPECIALIDAD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ESPECIALIDAD">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DOCTOR_ESPECIALIDAD">
+        <PropertyRef Name="ID_ESPECIALIDAD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HOSPITAL___ID_DO__22AA2996">
+    <End Role="DOCTOR" Type="Self.DOCTOR" Multiplicity="0..1" />
+    <End Role="HOSPITAL_DOCTOR" Type="Self.HOSPITAL_DOCTOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCTOR">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HOSPITAL_DOCTOR">
+        <PropertyRef Name="ID_DOCTOR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HOSPITAL___ID_ES__15502E78">
+    <End Role="ESPECIALIDAD" Type="Self.ESPECIALIDAD" Multiplicity="0..1" />
+    <End Role="HOSPITAL_ESPECIALIDAD" Type="Self.HOSPITAL_ESPECIALIDAD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ESPECIALIDAD">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HOSPITAL_ESPECIALIDAD">
+        <PropertyRef Name="ID_ESPECIALIDAD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HOSPITAL___ID_HO__145C0A3F">
+    <End Role="HOSPITAL" Type="Self.HOSPITAL" Multiplicity="0..1" />
+    <End Role="HOSPITAL_ESPECIALIDAD" Type="Self.HOSPITAL_ESPECIALIDAD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HOSPITAL">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HOSPITAL_ESPECIALIDAD">
+        <PropertyRef Name="ID_HOSPITAL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HOSPITAL___ID_HO__21B6055D">
+    <End Role="HOSPITAL" Type="Self.HOSPITAL" Multiplicity="0..1" />
+    <End Role="HOSPITAL_DOCTOR" Type="Self.HOSPITAL_DOCTOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HOSPITAL">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HOSPITAL_DOCTOR">
+        <PropertyRef Name="ID_HOSPITAL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__INTERNADO__ID_HO__2E1BDC42">
+    <End Role="HOSPITAL_ESPECIALIDAD" Type="Self.HOSPITAL_ESPECIALIDAD" Multiplicity="0..1" />
+    <End Role="INTERNADO" Type="Self.INTERNADO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HOSPITAL_ESPECIALIDAD">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="INTERNADO">
+        <PropertyRef Name="ID_HOSPITAL_ESPECIALIDAD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__INTERNADO__ID_PA__2D27B809">
+    <End Role="PACIENTE" Type="Self.PACIENTE" Multiplicity="0..1" />
+    <End Role="INTERNADO" Type="Self.INTERNADO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PACIENTE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="INTERNADO">
+        <PropertyRef Name="ID_PACIENTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VISITA__ID_DOCTO__30F848ED">
+    <End Role="DOCTOR" Type="Self.DOCTOR" Multiplicity="0..1" />
+    <End Role="VISITA" Type="Self.VISITA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCTOR">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VISITA">
+        <PropertyRef Name="ID_DOCTOR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VISITA__ID_INTER__31EC6D26">
+    <End Role="INTERNADO" Type="Self.INTERNADO" Multiplicity="0..1" />
+    <End Role="VISITA" Type="Self.VISITA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INTERNADO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VISITA">
+        <PropertyRef Name="ID_INTERNADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VISITA__ID_RECET__32E0915F">
+    <End Role="RECETA" Type="Self.RECETA" Multiplicity="0..1" />
+    <End Role="VISITA" Type="Self.VISITA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RECETA">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VISITA">
+        <PropertyRef Name="ID_RECETA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HOSPITALModelStoreContainer">
+    <EntitySet Name="CONSULTA" EntityType="Self.CONSULTA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DETALLE_RECETA" EntityType="Self.DETALLE_RECETA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DOCTOR" EntityType="Self.DOCTOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DOCTOR_ESPECIALIDAD" EntityType="Self.DOCTOR_ESPECIALIDAD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ESPECIALIDAD" EntityType="Self.ESPECIALIDAD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HOSPITAL" EntityType="Self.HOSPITAL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HOSPITAL_DOCTOR" EntityType="Self.HOSPITAL_DOCTOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HOSPITAL_ESPECIALIDAD" EntityType="Self.HOSPITAL_ESPECIALIDAD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="INTERNADO" EntityType="Self.INTERNADO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MEDICAMENTO" EntityType="Self.MEDICAMENTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PACIENTE" EntityType="Self.PACIENTE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RECETA" EntityType="Self.RECETA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VISITA" EntityType="Self.VISITA" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__CONSULTA__ID_DOC__286302EC" Association="Self.FK__CONSULTA__ID_DOC__286302EC">
+      <End Role="DOCTOR" EntitySet="DOCTOR" />
+      <End Role="CONSULTA" EntitySet="CONSULTA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CONSULTA__ID_HOS__276EDEB3" Association="Self.FK__CONSULTA__ID_HOS__276EDEB3">
+      <End Role="HOSPITAL" EntitySet="HOSPITAL" />
+      <End Role="CONSULTA" EntitySet="CONSULTA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CONSULTA__ID_PAC__29572725" Association="Self.FK__CONSULTA__ID_PAC__29572725">
+      <End Role="PACIENTE" EntitySet="PACIENTE" />
+      <End Role="CONSULTA" EntitySet="CONSULTA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CONSULTA__ID_REC__2A4B4B5E" Association="Self.FK__CONSULTA__ID_REC__2A4B4B5E">
+      <End Role="RECETA" EntitySet="RECETA" />
+      <End Role="CONSULTA" EntitySet="CONSULTA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DETALLE_R__ID_ME__36B12243" Association="Self.FK__DETALLE_R__ID_ME__36B12243">
+      <End Role="MEDICAMENTO" EntitySet="MEDICAMENTO" />
+      <End Role="DETALLE_RECETA" EntitySet="DETALLE_RECETA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DETALLE_R__ID_RE__35BCFE0A" Association="Self.FK__DETALLE_R__ID_RE__35BCFE0A">
+      <End Role="RECETA" EntitySet="RECETA" />
+      <End Role="DETALLE_RECETA" EntitySet="DETALLE_RECETA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DOCTOR_ES__ID_DO__1DE57479" Association="Self.FK__DOCTOR_ES__ID_DO__1DE57479">
+      <End Role="DOCTOR" EntitySet="DOCTOR" />
+      <End Role="DOCTOR_ESPECIALIDAD" EntitySet="DOCTOR_ESPECIALIDAD" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DOCTOR_ES__ID_ES__1ED998B2" Association="Self.FK__DOCTOR_ES__ID_ES__1ED998B2">
+      <End Role="ESPECIALIDAD" EntitySet="ESPECIALIDAD" />
+      <End Role="DOCTOR_ESPECIALIDAD" EntitySet="DOCTOR_ESPECIALIDAD" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HOSPITAL___ID_DO__22AA2996" Association="Self.FK__HOSPITAL___ID_DO__22AA2996">
+      <End Role="DOCTOR" EntitySet="DOCTOR" />
+      <End Role="HOSPITAL_DOCTOR" EntitySet="HOSPITAL_DOCTOR" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HOSPITAL___ID_ES__15502E78" Association="Self.FK__HOSPITAL___ID_ES__15502E78">
+      <End Role="ESPECIALIDAD" EntitySet="ESPECIALIDAD" />
+      <End Role="HOSPITAL_ESPECIALIDAD" EntitySet="HOSPITAL_ESPECIALIDAD" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HOSPITAL___ID_HO__145C0A3F" Association="Self.FK__HOSPITAL___ID_HO__145C0A3F">
+      <End Role="HOSPITAL" EntitySet="HOSPITAL" />
+      <End Role="HOSPITAL_ESPECIALIDAD" EntitySet="HOSPITAL_ESPECIALIDAD" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HOSPITAL___ID_HO__21B6055D" Association="Self.FK__HOSPITAL___ID_HO__21B6055D">
+      <End Role="HOSPITAL" EntitySet="HOSPITAL" />
+      <End Role="HOSPITAL_DOCTOR" EntitySet="HOSPITAL_DOCTOR" />
+    </AssociationSet>
+    <AssociationSet Name="FK__INTERNADO__ID_HO__2E1BDC42" Association="Self.FK__INTERNADO__ID_HO__2E1BDC42">
+      <End Role="HOSPITAL_ESPECIALIDAD" EntitySet="HOSPITAL_ESPECIALIDAD" />
+      <End Role="INTERNADO" EntitySet="INTERNADO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__INTERNADO__ID_PA__2D27B809" Association="Self.FK__INTERNADO__ID_PA__2D27B809">
+      <End Role="PACIENTE" EntitySet="PACIENTE" />
+      <End Role="INTERNADO" EntitySet="INTERNADO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VISITA__ID_DOCTO__30F848ED" Association="Self.FK__VISITA__ID_DOCTO__30F848ED">
+      <End Role="DOCTOR" EntitySet="DOCTOR" />
+      <End Role="VISITA" EntitySet="VISITA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VISITA__ID_INTER__31EC6D26" Association="Self.FK__VISITA__ID_INTER__31EC6D26">
+      <End Role="INTERNADO" EntitySet="INTERNADO" />
+      <End Role="VISITA" EntitySet="VISITA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VISITA__ID_RECET__32E0915F" Association="Self.FK__VISITA__ID_RECET__32E0915F">
+      <End Role="RECETA" EntitySet="RECETA" />
+      <End Role="VISITA" EntitySet="VISITA" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
