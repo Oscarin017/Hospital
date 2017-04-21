@@ -22,8 +22,7 @@ namespace Hospital.Models
     
         public int ID { get; set; }
         public string NOMBRE { get; set; }
-        public string INGREDIENTE_ACTIVO { get; set; }
-        public Nullable<int> PIEZAS { get; set; }
+        public string OBSERVACIONES { get; set; }
         public Nullable<bool> VISIBLE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

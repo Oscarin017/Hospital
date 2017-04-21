@@ -13,10 +13,10 @@ namespace Hospital.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class HOSPITALEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public HOSPITALEntities()
-            : base("name=HOSPITALEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     

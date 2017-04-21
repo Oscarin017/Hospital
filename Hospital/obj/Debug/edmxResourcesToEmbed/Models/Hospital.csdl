@@ -126,8 +126,7 @@
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="INGREDIENTE_ACTIVO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="PIEZAS" Type="Int32" />
+    <Property Name="OBSERVACIONES" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
     <Property Name="VISIBLE" Type="Boolean" />
     <NavigationProperty Name="DETALLE_RECETA" Relationship="Self.FK__DETALLE_R__ID_ME__36B12243" FromRole="MEDICAMENTO" ToRole="DETALLE_RECETA" />
   </EntityType>
@@ -375,7 +374,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="HOSPITALEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="CONSULTA" EntityType="Self.CONSULTA" />
     <EntitySet Name="DETALLE_RECETA" EntityType="Self.DETALLE_RECETA" />
     <EntitySet Name="DOCTOR" EntityType="Self.DOCTOR" />

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="HOSPITALModelStoreContainer" CdmEntityContainer="HOSPITALEntities">
+  <EntityContainerMapping StorageEntityContainer="HOSPITALModelStoreContainer" CdmEntityContainer="Entities">
     <EntitySetMapping Name="CONSULTA">
       <EntityTypeMapping TypeName="HOSPITALModel.CONSULTA">
         <MappingFragment StoreEntitySet="CONSULTA">
@@ -110,8 +110,7 @@
         <MappingFragment StoreEntitySet="MEDICAMENTO">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
-          <ScalarProperty Name="INGREDIENTE_ACTIVO" ColumnName="INGREDIENTE_ACTIVO" />
-          <ScalarProperty Name="PIEZAS" ColumnName="PIEZAS" />
+          <ScalarProperty Name="OBSERVACIONES" ColumnName="OBSERVACIONES" />
           <ScalarProperty Name="VISIBLE" ColumnName="VISIBLE" />
         </MappingFragment>
       </EntityTypeMapping>

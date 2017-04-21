@@ -101,8 +101,7 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="NOMBRE" Type="varchar" MaxLength="50" />
-    <Property Name="INGREDIENTE_ACTIVO" Type="varchar" MaxLength="100" />
-    <Property Name="PIEZAS" Type="int" />
+    <Property Name="OBSERVACIONES" Type="varchar" MaxLength="250" />
     <Property Name="VISIBLE" Type="bit" />
   </EntityType>
   <EntityType Name="PACIENTE">

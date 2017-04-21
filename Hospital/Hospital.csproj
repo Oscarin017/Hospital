@@ -100,21 +100,32 @@
     <Content Include="Global.asax" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\jquery-3.2.1.js" />
+    <Content Include="js\script.js" />
     <Content Include="Models\Hospital.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Hospital.Context.cs</LastGenOutput>
       <DependentUpon>Hospital.edmx</DependentUpon>
+      <LastGenOutput>Hospital.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\Hospital.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Hospital.edmx</DependentUpon>
       <LastGenOutput>Hospital1.cs</LastGenOutput>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ConsultaController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\DoctorController.cs" />
+    <Compile Include="Controllers\EspecialidadController.cs" />
+    <Compile Include="Controllers\HospitalController.cs" />
+    <Compile Include="Controllers\InternadoController.cs" />
+    <Compile Include="Controllers\MedicamentoController.cs" />
+    <Compile Include="Controllers\PacienteController.cs" />
+    <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -175,8 +186,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\web.config" />
+    <Content Include="Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="packages.config" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
     <EntityDeploy Include="Models\Hospital.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Hospital.Designer.cs</LastGenOutput>
@@ -184,9 +200,13 @@
     <Content Include="Models\Hospital.edmx.diagram">
       <DependentUpon>Hospital.edmx</DependentUpon>
     </Content>
-    <Content Include="Views\Shared\_Header.cshtml" />
-    <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="Views\Consulta\Index.cshtml" />
+    <Content Include="Views\Doctor\Index.cshtml" />
+    <Content Include="Views\Especialidad\Index.cshtml" />
+    <Content Include="Views\Hospital\Index.cshtml" />
+    <Content Include="Views\Internado\Index.cshtml" />
+    <Content Include="Views\Medicamento\Index.cshtml" />
+    <Content Include="Views\Paciente\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -196,6 +216,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Reporte\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
