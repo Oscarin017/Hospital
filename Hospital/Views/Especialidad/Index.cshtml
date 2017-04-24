@@ -1,5 +1,175 @@
-﻿    @Html.Partial("_Header")
-        <h1>Especialidad</h1>
-    @Html.Partial("_Footer")
+﻿@Html.Partial("_Header")
+<div class="page-header">
+    <h1>Especialidad</h1>
+</div>
+<form id="formBuscar" class="form-inline">
+    <div class="input-group">
+        <input id="txtBuscarNombre" type="text" class="form-control" placeholder="Buscar por Especialidad">
+    </div>
+    <div class="input-group">
+        <input id="btnBuscarEspecialidad" type="submit" class="btn btn btn-primary" value="Buscar">
+    </div>
+</form>
+<button id="btnAgregar" type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#modalEspecialidad">Agregar</button>
+<div class="table-resposive">
+    <table id="tableEspecialidad" class="table table-striped">
+        <thead>
+            <tr>
+                <th id="thCodigo">Codigo</th>
+                <th id="thNombre">Especialidad</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<div id="modalEspecialidad" class="modal fade" tabindex="1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content  col-xs-8 col-xs-offset-2">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <form id="formEspecialidad">
+                    <div class="form-group">
+                        <label for="txtCodigo">Codigo</label>
+                        <input id="txtCodigo" type="text" class="form-control" placeholder="Codigo" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtNombre">Especialidad</label>
+                        <input id="txtNombre" type="text" class="form-control" placeholder="Nombre" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <input id="btnAgregarModal" type="submit" form="formCliente" class="btn btn-success" value="Agregar">
+                    <input id="btnModificarModal" type="submit" form="formCliente" class="btn btn-primary" value="Modificar">
+                    <input id="btnEliminarModal" type="submit" form="formCliente" class="btn btn-warning" value="Eliminar">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+            $("#formBuscar").submit(function (event) {
+                event.preventDefault();
+                cargarTabla();
+            });
 
 
+            $("#btnAgregar").click(function () {
+                modificarTituloModal("Agregar Especialidad");
+                $("#btnAgregarModal").css("display", "inline-block");
+                $("#btnModificarModal").css("display", "none");
+                $("#btnEliminarModal").css("display", "none");
+            });
+
+            $(".container").on("click", ".btnVer", function () {
+                modificarTituloModal("Especialidad");
+                $("#btnAgregarModal").css("display", "none");
+                $("#btnModificarModal").css("display", "none");
+                $("#btnEliminarModal").css("display", "none");
+                cargarModal($(this).data("id"));
+            });
+
+            $(".container").on("click", ".btnModificar", function () {
+                modificarTituloModal("Modificar Especialidad");
+                $("#btnAgregarModal").css("display", "none");
+                $("#btnModificarModal").css("display", "inline-block");
+                $("#btnEliminarModal").css("display", "none");
+                cargarModal($(this).data("id"));
+            });
+
+            $(".container").on("click", ".btnEliminar", function () {
+                modificarTituloModal("Eliminar Especialidad");
+                $("#btnAgregarModal").css("display", "none");
+                $("#btnModificarModal").css("display", "none");
+                $("#btnEliminarModal").css("display", "inline-block");
+                cargarModal($(this).data("id"));
+            });
+
+            $("#formEspecialidad").submit(function (event) {
+                event.preventDefault();
+                cargarTabla();
+            });
+
+            $("#modalEspecialidad").on("hidden.bs.modal", function () {
+                $("#txtCodigo").val("");
+                $("#txtNombre").val("");
+                cargarTabla();
+            });
+
+            $(".container").on("click", "#btnAgregarModal", function () {
+                $.ajax({
+                    url: "@Url.Action("agregarEspecialidad", "Especialidad")",
+                    type: "POST",
+                    data: { nombre: $("#txtNombre").val()},
+                    success: function (row) {
+                        alert("Especialidad agregada con exito.");
+                        $('#modalEspecialidad').modal('toggle');
+                    }
+                });
+            });
+
+            $(".container").on("click", "#btnModificarModal", function () {
+                $.ajax({
+                    url: "@Url.Action("modificarEspecialidad", "Especialidad")",
+                    type: "POST",
+                    data: { id: $("#txtCodigo").val(), nombre: $("#txtNombre").val(), visible: true},
+                    success: function (row) {
+                        alert("Especialidad modificada con exito.");
+                        $('#modalEspecialidad').modal('toggle');
+                    }
+                });
+            });
+
+            $(".container").on("click", "#btnEliminarModal", function () {
+                $.ajax({
+                    url: "@Url.Action("modificarEspecialidad", "Especialidad")",
+                    type: "POST",
+                    data: { id: $("#txtCodigo").val(), nombre: $("#txtNombre").val(), visible: false},
+                    success: function (row) {
+                        alert("Especialidad eliminada con exito.");
+                        $('#modalEspecialidad').modal('toggle');
+                    }
+                });
+            });
+
+            function cargarModal(idEspecialidad) {
+                $.ajax({
+                    url: "@Url.Action("obtenerEspecialidad", "Especialidad")",
+                    type: "POST",
+                    data: { id: idEspecialidad},
+                    success: function (row) {
+                        $("#txtCodigo").val(row.ID);
+                        $("#txtNombre").val(row.NOMBRE);
+                    }
+                });
+            }
+
+            function cargarTabla() {
+                    $("#tableEspecialidad tbody").empty();
+                $.ajax({
+                    url: "@Url.Action("obtenerEspecialidades", "Especialidad")",
+                    type: "POST",
+                    data: { nombre: $("#txtBuscarNombre").val() },
+                    success: function (result) {
+                        $.each(result, function (index, row) {
+                            $("#tableEspecialidad").append("<tr><td>" + row.ID + "</td><td>" + row.NOMBRE + "</td><td><button data-id='" + row.ID + "' class='btn btn-info btnVer' data-toggle='modal' data-target='#modalEspecialidad'>Ver</button></td><td><button data-id='" + row.ID + "' class='btn btn-primary btnModificar' data-toggle='modal' data-target='#modalEspecialidad'>Modificar</button></td><td><button data-id='" + row.ID + "' class='btn btn-warning btnEliminar' data-toggle='modal' data-target='#modalEspecialidad'>Eliminar</button></td></tr>");
+                        });
+                    }
+                });
+            }
+
+            $(document).ready(function () {
+                cargarTabla();
+            });
+</script>
+@Html.Partial("_Footer")

@@ -99,6 +99,8 @@
     <Content Include="css\style.css" />
     <Content Include="Global.asax" />
     <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\exporting.js" />
+    <Content Include="js\highcharts.js" />
     <Content Include="js\jquery-3.2.1.js" />
     <Content Include="js\script.js" />
     <Content Include="Models\Hospital.Context.tt">
@@ -121,11 +123,11 @@
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\EspecialidadController.cs" />
+    <Compile Include="Controllers\Reporte1Controller.cs" />
     <Compile Include="Controllers\HospitalController.cs" />
     <Compile Include="Controllers\InternadoController.cs" />
     <Compile Include="Controllers\MedicamentoController.cs" />
     <Compile Include="Controllers\PacienteController.cs" />
-    <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -207,6 +209,7 @@
     <Content Include="Views\Internado\Index.cshtml" />
     <Content Include="Views\Medicamento\Index.cshtml" />
     <Content Include="Views\Paciente\Index.cshtml" />
+    <Content Include="Views\Reporte1\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -216,7 +219,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Reporte\" />
+    <Folder Include="imagenes\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

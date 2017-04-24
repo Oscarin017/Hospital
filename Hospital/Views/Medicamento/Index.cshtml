@@ -1,67 +1,67 @@
-﻿    @Html.Partial("_Header")
-        <div class="page-header">
-            <h1>Medicamento</h1>
-        </div>
-        <form id="formBuscar" class="form-inline">
-            <div class="input-group">
-                <input id="txtBuscarNombre" type="text" class="form-control" placeholder="Buscar por nombre">
+﻿@Html.Partial("_Header")
+<div class="page-header">
+    <h1>Medicamento</h1>
+</div>
+<form id="formBuscar" class="form-inline">
+    <div class="input-group">
+        <input id="txtBuscarNombre" type="text" class="form-control" placeholder="Buscar Medicamento">
+    </div>
+    <div class="input-group">
+        <input id="btnBuscarMedicamento" type="submit" class="btn btn btn-primary" value="Buscar">
+    </div>
+</form>
+<button id="btnAgregar" type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#modalMedicamento">Agregar</button>
+<div class="table-resposive">
+    <table id="tableMedicamento" class="table table-striped">
+        <thead>
+            <tr>
+                <th id="thCodigo">Codigo</th>
+                <th id="thNombre">Medicamento</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<div id="modalMedicamento" class="modal fade" tabindex="1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content  col-xs-8 col-xs-offset-2">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"></h4>
             </div>
-            <div class="input-group">
-                <input id="btnBuscarMedicamento" type="submit" class="btn btn btn-primary" value="Buscar">
+            <div class="modal-body">
+                <form id="formMedicamento">
+                    <div class="form-group">
+                        <label for="txtCodigo">Codigo</label>
+                        <input id="txtCodigo" type="text" class="form-control" placeholder="Codigo" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtMedicamento">Medicamento</label>
+                        <input id="txtMedicamento" type="text" class="form-control" placeholder="Medicamento" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtObservaciones">Observaciones</label>
+                        <textarea id="txtObservaciones" rows="5" class="form-control" placeholder="Observaciones" required></textarea>
+                    </div>
+                </form>
             </div>
-        </form>
-        <button id="btnAgregar" type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#modalMedicamento">Agregar</button>
-        <div class="table-resposive">
-            <table id="tableMedicamento" class="table table-striped">
-                <thead>
-                    <tr>
-                        <th id="thCodigo">Codigo</th>
-                        <th id="thNombre">Nombre</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-        <div id="modalMedicamento" class="modal fade" tabindex="1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content  col-xs-8 col-xs-offset-2">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title"></h4>
-                    </div>
-                    <div class="modal-body">
-                        <form id="formMedicamento">
-                            <div class="form-group">
-                                <label for="txtCodigo">Codigo</label>
-                                <input id="txtCodigo" type="text" class="form-control" placeholder="Codigo" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="txtNombre">Nombre</label>
-                                <input id="txtNombre" type="text" class="form-control" placeholder="Nombre" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="txtObservaciones">Observaciones</label>
-                                <textarea id="txtObservaciones" rows="5" class="form-control" placeholder="Observaciones" required></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="form-group">
-                            <input id="btnAgregarModal" type="submit" form="formCliente" class="btn btn-success" value="Agregar">
-                            <input id="btnModificarModal" type="submit" form="formCliente" class="btn btn-primary" value="Modificar">
-                            <input id="btnEliminarModal" type="submit" form="formCliente" class="btn btn-warning" value="Eliminar">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                        </div>
-                    </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <input id="btnAgregarModal" type="submit" form="formCliente" class="btn btn-success" value="Agregar">
+                    <input id="btnModificarModal" type="submit" form="formCliente" class="btn btn-primary" value="Modificar">
+                    <input id="btnEliminarModal" type="submit" form="formCliente" class="btn btn-warning" value="Eliminar">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
-        <script>
+    </div>
+</div>
+<script>
             $("#formBuscar").submit(function (event) {
                 event.preventDefault();
                 cargarTabla();
@@ -70,9 +70,11 @@
 
             $("#btnAgregar").click(function () {
                 modificarTituloModal("Agregar Medicamento");
-                $("#btnAgregarModal").css("display", "inline-block");
+                $("#btnAgregarModal").css("display", "inlin  e-block");
                 $("#btnModificarModal").css("display", "none");
                 $("#btnEliminarModal").css("display", "none");
+                $("#txtMedicamento").attr('enabled', 'enabled');
+                $("#txtObservaciones").attr('enabled', 'enabled');
             });
 
             $(".container").on("click", ".btnVer", function () {
@@ -80,6 +82,8 @@
                 $("#btnAgregarModal").css("display", "none");
                 $("#btnModificarModal").css("display", "none");
                 $("#btnEliminarModal").css("display", "none");
+                $("#txtMedicamento").attr('disabled', 'disabled');
+                $("#txtObservaciones").attr('disabled', 'disabled');
                 cargarModal($(this).data("id"));
             });
 
@@ -88,6 +92,8 @@
                 $("#btnAgregarModal").css("display", "none");
                 $("#btnModificarModal").css("display", "inline-block");
                 $("#btnEliminarModal").css("display", "none");
+                $("#txtMedicamento").attr('enabled', true);
+                $("#txtObservaciones").attr('enabled', true);
                 cargarModal($(this).data("id"));
             });
 
@@ -106,8 +112,9 @@
 
             $("#modalMedicamento").on("hidden.bs.modal", function () {
                 $("#txtCodigo").val("");
-                $("#txtNombre").val("");
+                $("#txtMedicamento").val("");
                 $("#txtObservaciones").val("");
+                $("#modalMedicamento").attr("close");
                 cargarTabla();
             });
 
@@ -115,9 +122,9 @@
                 $.ajax({
                     url: "@Url.Action("agregarMedicamento", "Medicamento")",
                     type: "POST",
-                    data: { nombre: $("#txtNombre").val(), observaciones: $("#txtObservaciones").val()},
+                    data: { nombre: $("#txtMedicamento").val(), observaciones: $("#txtObservaciones").val()},
                     success: function (row) {
-                        alert("Producto agregado con exito.");
+                        alert("Medicamento agregado con exito.");
                         $('#modalMedicamento').modal('toggle');
                     }
                 });
@@ -127,9 +134,9 @@
                 $.ajax({
                     url: "@Url.Action("modificarMedicamento", "Medicamento")",
                     type: "POST",
-                    data: { id: $("#txtCodigo").val(), nombre: $("#txtNombre").val(), observaciones: $("#txtObservaciones").val(), visible: true},
+                    data: { id: $("#txtCodigo").val(), nombre: $("#txtMedicamento").val(), observaciones: $("#txtObservaciones").val(), visible: true},
                     success: function (row) {
-                        alert("Producto modificado con exito.");
+                        alert("Medicamento modificado con exito.");
                         $('#modalMedicamento').modal('toggle');
                     }
                 });
@@ -139,9 +146,9 @@
                 $.ajax({
                     url: "@Url.Action("modificarMedicamento", "Medicamento")",
                     type: "POST",
-                    data: { id: $("#txtCodigo").val(), nombre: $("#txtNombre").val(), observaciones: $("#txtObservaciones").val(), visible: false},
+                    data: { id: $("#txtCodigo").val(), nombre: $("#txtMedicamento").val(), observaciones: $("#txtObservaciones").val(), visible: false},
                     success: function (row) {
-                        alert("Producto eliminado con exito.");
+                        alert("Medicamento eliminado con exito.");
                         $('#modalMedicamento').modal('toggle');
                     }
                 });
@@ -154,14 +161,14 @@
                     data: { id: idMedicamento},
                     success: function (row) {
                         $("#txtCodigo").val(row.ID);
-                        $("#txtNombre").val(row.NOMBRE);
+                        $("#txtMedicamento").val(row.NOMBRE);
                         $("#txtObservaciones").val(row.OBSERVACIONES);
                     }
                 });
             }
 
             function cargarTabla() {
-                $("#tableMedicamento tbody").empty();
+                    $("#tableMedicamento tbody").empty();
                 $.ajax({
                     url: "@Url.Action("obtenerMedicamentos", "Medicamento")",
                     type: "POST",
@@ -177,5 +184,5 @@
             $(document).ready(function () {
                 cargarTabla();
             });
-        </script>      
-    @Html.Partial("_Footer")
+</script>
+@Html.Partial("_Footer")
