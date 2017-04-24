@@ -21,10 +21,5 @@ namespace Hospital.Models
         public Nullable<int> ID_PACIENTE { get; set; }
         public Nullable<int> ID_RECETA { get; set; }
         public Nullable<bool> VISIBLE { get; set; }
-    
-        public virtual DOCTOR DOCTOR { get; set; }
-        public virtual HOSPITAL HOSPITAL { get; set; }
-        public virtual PACIENTE PACIENTE { get; set; }
-        public virtual RECETA RECETA { get; set; }
     }
 }

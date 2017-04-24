@@ -14,22 +14,11 @@ namespace Hospital.Models
     
     public partial class INTERNADO
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public INTERNADO()
-        {
-            this.VISITA = new HashSet<VISITA>();
-        }
-    
         public int ID { get; set; }
         public Nullable<System.DateTime> INGRESO { get; set; }
         public Nullable<System.DateTime> SALIDA { get; set; }
         public Nullable<int> ID_PACIENTE { get; set; }
         public Nullable<int> ID_HOSPITAL_ESPECIALIDAD { get; set; }
         public Nullable<bool> VISIBLE { get; set; }
-    
-        public virtual HOSPITAL_ESPECIALIDAD HOSPITAL_ESPECIALIDAD { get; set; }
-        public virtual PACIENTE PACIENTE { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VISITA> VISITA { get; set; }
     }
 }

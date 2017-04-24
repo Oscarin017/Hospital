@@ -1,5 +1,297 @@
 ﻿    @Html.Partial("_Header")
-        <h1>Doctor</h1>
+        <div class="page-header">
+            <h1>Doctor</h1>
+        </div>
+        <form id="formBuscar" class="form-inline">
+            <div class="input-group">
+                <input id="txtBuscarNombre" type="text" class="form-control" placeholder="Buscar por nombre">
+            </div>
+            <div class="input-group">
+                <input id="txtBuscarApellido" type="text" class="form-control" placeholder="Buscar por Apellido">
+            </div>
+            <div class="input-group">
+                <input type="text" id="txtBuscarEspecialidad" class="form-control buscarEspecialidad" data-id="0" data-control="ulBuscarEspecialidad" placeholder="Buscar por Especialidad" data-toggle="dropdown" />
+                <ul id="ulBuscarEspecialidad" class="dropdown-menu" role="menu"></ul>
+            </div>
+            <div class="input-group">
+                <select class="form-control" id="selBuscarSexo">
+                    <option value="0">Buscar por Sexo</option>
+                    <option value="H">Hombre</option>
+                    <option value="M">Mujer</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <input id="btnBuscarDoctor" type="submit" class="btn btn btn-primary" value="Buscar">
+            </div>
+        </form>
+        <button id="btnAgregar" type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#modalDoctor">Agregar</button>
+        <div class="table-resposive">
+            <table id="tableDoctor" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th id="thCodigo">Codigo</th>
+                        <th id="thNombre">Nombre</th>
+                        <th id="thApellido">Apellido</th>
+                        <th id="thCedula">Cedula</th>
+                        <th id="thSexo">Sexo</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="modalDoctor" class="modal fade" tabindex="1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content  col-xs-8 col-xs-offset-2">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formDoctor">
+                            <div class="form-group">
+                                <label for="txtCodigo">Codigo</label>
+                                <input id="txtCodigo" type="text" class="form-control" placeholder="Codigo" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtNombre">Nombre</label>
+                                <input id="txtNombre" type="text" class="form-control" placeholder="Nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtApellido">Apellido</label>
+                                <input id="txtApellido" type="text" class="form-control" placeholder="Apellido" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtCedula">Cedula</label>
+                                <input id="txtCedula" type="text" class="form-control" placeholder="Cedula" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtFechaNacimiento">Fecha de nacimiento</label>
+                                <input id="txtFechaNacimiento" type="date" class="form-control" placeholder="Fecha de nacimiento" required>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" id="selSexo">
+                                    <option value="0">Buscar por Sexo</option>
+                                    <option value="H">Hombre</option>
+                                    <option value="M">Mujer</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtDireccion">Direccion</label>
+                                <input id="txtDireccion" type="text" class="form-control" placeholder="Direccion" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtTelefono">Telefono</label>
+                                <input id="txtTelefono" type="text" class="form-control" placeholder="Telefono" required>
+                            </div>
+                            <table id="tableEspecialidad" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th id="thCodigo">Especialidad</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="input-group">
+                                                <input type="text" id="txtEspecialidadModal" class="form-control buscarEspecialidad" data-id="0" data-control="ulEspecialidadModal" placeholder="Buscar por Especialidad" data-toggle="dropdown" />
+                                                <ul id="ulEspecialidadModal" class="dropdown-menu" role="menu"></ul>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input id="btnAgregarEspecialidad" type="button" class="btn btn-success" value="Agregar">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <input id="btnAgregarModal" type="submit" form="formCliente" class="btn btn-success" value="Agregar">
+                            <input id="btnModificarModal" type="submit" form="formCliente" class="btn btn-primary" value="Modificar">
+                            <input id="btnEliminarModal" type="submit" form="formCliente" class="btn btn-warning" value="Eliminar">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+                    $(".buscarEspecialidad").keyup(function () {
+                        cargarEspecialidad($(this), $("#" + $(this).data("control")));
+                    });
+
+                    $(".container").on("click", ".especialidad", function (e) {
+                        e.preventDefault();
+                        var txt = $(this).data("control");
+                        $("#" + txt).val($(this).html());
+                        $("#" + txt).data("id", $(this).data("id"));
+                    });
+
+                    $("#formBuscar").submit(function (event) {
+                        event.preventDefault();
+                        cargarTabla();
+                    });
+
+                    $("#btnAgregar").click(function () {
+                        modificarTituloModal("Agregar Doctor");
+                        $("#btnAgregarModal").css("display", "inline-block");
+                        $("#btnModificarModal").css("display", "none");
+                        $("#btnEliminarModal").css("display", "none");
+                    });
+
+                    $(".container").on("click", ".btnVer", function () {
+                        modificarTituloModal("Doctor");
+                        $("#btnAgregarModal").css("display", "none");
+                        $("#btnModificarModal").css("display", "none");
+                        $("#btnEliminarModal").css("display", "none");
+                        cargarModal($(this).data("id"));
+                    });
+
+                    $(".container").on("click", ".btnModificar", function () {
+                        modificarTituloModal("Modificar Doctor");
+                        $("#btnAgregarModal").css("display", "none");
+                        $("#btnModificarModal").css("display", "inline-block");
+                        $("#btnEliminarModal").css("display", "none");
+                        cargarModal($(this).data("id"));
+                    });
+
+                    $(".container").on("click", ".btnEliminar", function () {
+                        modificarTituloModal("Eliminar Doctor");
+                        $("#btnAgregarModal").css("display", "none");
+                        $("#btnModificarModal").css("display", "none");
+                        $("#btnEliminarModal").css("display", "inline-block");
+                        cargarModal($(this).data("id"));
+                    });
+
+                    $("#btnAgregarEspecialidad").click(function () {
+                        alert($("#txtEspecialidadModal").val());
+                        $("#tableEspecialidad tbody").prepend("<tr><td>" + $("#txtEspecialidadModal").val() + "</td><td><input type='button' class='btn btn-warning btnEliminarEspecilidad' data-id='" + $("#txtEspecialidadModal").data('id') + "' value='Eliminar' /></td></tr>");
+                        $("#txtEspecialidadModal").val("");
+                        $("#txtEspecialidadModal").data("id", "0");
+                    });
+
+                    $("#formDoctor").submit(function (event) {
+                        event.preventDefault();
+                        cargarTabla();
+                    });
+
+                    $("#modalDoctor").on("hidden.bs.modal", function () {
+                        $("#txtCodigo").val("");
+                        $("#txtNombre").val("");
+                        $("#txtApellido").val("");
+                        $("#txtCedula").val("");
+                        $("#txtFechaNacimiento").val("");
+                        $("#selSexo").val("0");
+                        $("#txtDireccion").val("");
+                        $("#txtTelefono").val("");
+                        $("#tableEspecialidad tbody").empty();
+                        cargarTabla();
+                    });
+
+                    $(".container").on("click", "#btnAgregarModal", function () {
+                        var especialidades = "";
+                        $("#tableEspecialidad > tbody  > tr").each(function () {
+                            var id = $(this).find(".btnEliminarEspecilidad").data("id");
+                            if (id > 0) {
+                                especialidades += " id: " + id + ",";
+                            }
+                        });
+                        especialidades = especialidades.substring(0, especialidades.length - 1);
+                        especialidades = "{ " + especialidades + " }";
+                    alert(JSON.stringify(especialidades));
+
+                        var data = { nombre: $("#txtNombre").val(), apellido: $("#txtApellido").val(), cedula: $("#txtCedula").val(), fechaNacimiento: $("#txtFechaNacimiento").val(""), sexo: $("#selSexo").val(), direccion: $("#txtDireccion").val(), telefono: $("#txtTelefono").val() };
+                        alert(JSON.stringify(data));
+                        $.ajax({
+                            url: "@Url.Action("agregarDoctor", "Doctor")",
+                            type: "POST",
+                            data: { nombre: $("#txtNombre").val(), apellido: $("#txtApellido").val(), cedula: $("#txtCedula").val(), fechaNacimiento: $("#txtFechaNacimiento").val(""), sexo: $("#selSexo").val(), direccion: $("#txtDireccion").val(), telefono: $("#txtTelefono").val() },
+                            success: function (row) {
+                                alert("Doctor agregado con exito.");
+                                $('#modalDoctor').modal('toggle');
+                            }
+                        });
+                    });
+
+                    $(".container").on("click", "#btnModificarModal", function () {
+                        $.ajax({
+                            url: "@Url.Action("modificarDoctor", "Doctor")",
+                            type: "POST",
+                            data: { id: $("#txtCodigo").val(), nombre: $("#txtNombre").val(), observaciones: $("#txtObservaciones").val(), visible: true},
+                            success: function (row) {
+                                alert("Producto modificado con exito.");
+                                $('#modalDoctor').modal('toggle');
+                            }
+                        });
+                    });
+
+                    $(".container").on("click", "#btnEliminarModal", function () {
+                        $.ajax({
+                            url: "@Url.Action("modificarDoctor", "Doctor")",
+                            type: "POST",
+                            data: { id: $("#txtCodigo").val(), nombre: $("#txtNombre").val(), observaciones: $("#txtObservaciones").val(), visible: false},
+                            success: function (row) {
+                                alert("Producto eliminado con exito.");
+                                $('#modalDoctor').modal('toggle');
+                            }
+                        });
+                    });
+
+                    function cargarModal(idDoctor) {
+                        $.ajax({
+                            url: "@Url.Action("obtenerDoctor", "Doctor")",
+                            type: "POST",
+                            data: { id: idDoctor},
+                            success: function (row) {
+                                $("#txtCodigo").val(row.ID);
+                                $("#txtNombre").val(row.NOMBRE);
+                                $("#txtApellido").val(row.APELLIDO);
+                                $("#txtCedula").val(row.CEDULA);
+                                $("#txtFechaNacimiento").val(row.FECHA_NACIMIENTO);
+                                $("#selSexo").val(row.SEXO);
+                                $("#txtDireccion").val(row.DIRECCION);
+                                $("#txtTelefono").val(row.TELEFONO);
+                            }
+                        });
+                    }
+
+                    function cargarTabla() {
+                        $("#tableDoctor tbody").empty();
+                        $.ajax({
+                            url: "@Url.Action("obtenerDoctores", "Doctor")",
+                            type: "POST",
+                            data: { nombre: $("#txtBuscarNombre").val(), apellido: $("#txtBuscarApellido").val(), especialidad: $("#txtBuscarEspecialidad").data("id") ,sexo: $("#selBuscarSexo").val()},
+                            success: function (result) {
+                                $.each(result, function (index, row) {
+                                    $("#tableDoctor").append("<tr><td>" + row.ID + "</td><td>" + row.NOMBRE + "</td><td>" + row.APELLIDO + "</td><td>" + row.CEDULA + "</td><td>" + row.SEXO + "</td><td><button data-id='" + row.ID + "' class='btn btn-info btnVer' data-toggle='modal' data-target='#modalDoctor'>Ver</button></td><td><button data-id='" + row.ID + "' class='btn btn-primary btnModificar' data-toggle='modal' data-target='#modalDoctor'>Modificar</button></td><td><button data-id='" + row.ID + "' class='btn btn-warning btnEliminar' data-toggle='modal' data-target='#modalDoctor'>Eliminar</button></td></tr>");
+                                });
+                            }
+                        });
+                    }
+
+                    function cargarEspecialidad(txt, ul) {
+                        ul.empty();
+                        $.ajax({
+                            url: "@Url.Action("obtenerEspecialidades", "Doctor")",
+                            type: "POST",
+                            data: { nombre: txt.val() },
+                            success: function (result) {
+                                $.each(result, function (index, row) {
+                                    ul.append("<li><a href='#' class='especialidad' data-id='" + row.ID + "' data-control='" + txt.attr('id') + "'>" + row.NOMBRE + "</a></li>");
+                                });
+                            }
+                        });
+                    }
+
+                    $(document).ready(function () {
+                        cargarTabla();
+                    });
+        </script>
     @Html.Partial("_Footer")
-
-

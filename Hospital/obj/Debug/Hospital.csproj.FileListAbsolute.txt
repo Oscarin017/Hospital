@@ -24,6 +24,6 @@ C:\Users\racso\Google Drive\Escuela\UTT\Octavo Cuatrimestre\Hospital\Hospital\bi
 C:\Users\racso\Google Drive\Escuela\UTT\Octavo Cuatrimestre\Hospital\Hospital\bin\es\System.Web.Webpages.Razor.resources.dll
 C:\Users\racso\Google Drive\Escuela\UTT\Octavo Cuatrimestre\Hospital\Hospital\bin\es\System.Web.Helpers.resources.dll
 C:\Users\racso\Google Drive\Escuela\UTT\Octavo Cuatrimestre\Hospital\Hospital\bin\es\System.Web.Mvc.resources.dll
-C:\Users\racso\Google Drive\Escuela\UTT\Octavo Cuatrimestre\Hospital\Hospital\obj\Debug\Hospital.csprojResolveAssemblyReference.cache
 C:\Users\racso\Google Drive\Escuela\UTT\Octavo Cuatrimestre\Hospital\Hospital\obj\Debug\Hospital.dll
 C:\Users\racso\Google Drive\Escuela\UTT\Octavo Cuatrimestre\Hospital\Hospital\obj\Debug\Hospital.pdb
+C:\Users\racso\Google Drive\Escuela\UTT\Octavo Cuatrimestre\Hospital\Hospital\obj\Debug\Hospital.csprojResolveAssemblyReference.cache
