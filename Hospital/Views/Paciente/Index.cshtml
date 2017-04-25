@@ -40,7 +40,7 @@
                 <form id="formPaciente">
                     <div class="form-group">
                         <label for="txtCodigo">Codigo</label>
-                        <input id="txtCodigo" type="text" class="form-control" placeholder="Codigo" required>
+                        <input id="txtCodigo" type="text" class="form-control" placeholder="Codigo" disabled>
                     </div>
                     <div class="form-group">
                         <label for="txtNombre">Nombre</label>
@@ -48,15 +48,15 @@
                     </div>
                     <div class="form-group">
                         <label for="txtApellido">Apellido</label>
-                        <input id="txtApellido" type="text" class="form-control" placeholder="Nombre" required>
+                        <input id="txtApellido" type="text" class="form-control" placeholder="Apellido" required>
                     </div>
                     <div class="form-group">
                         <label for="txtFechadeNacimiento">Fecha de nacimiento</label>
-                        <input id="txtFechadenaciemiento" type="date" class="form-control" placeholder="Nombre" required>
+                        <input id="txtFechadeNaciemiento" type="date" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <select id="txtSexo">
-                            <option value="m" selected>Sexo</option>
+                        <select id="txtSexo" class="form-control">
+                            <option  selected>Sexo</option>
                             <option value="m">Masculino</option>
                             <option value="f">Femenino</option>
                         </select>
@@ -140,7 +140,7 @@
                 $.ajax({
                     url: "@Url.Action("agregarPaciente", "Paciente")",
                     type: "POST",
-                    data: { nombre: $("#txtNombre").val(), apellido: $("#txtApellido").val(), fechaNacimiento: $("#txtFechadenacimiento").val(), sexo: $("#txtSexo option:selected").val(), direccion: $("#txtDireccion").val(), telefono: $("#txtTelefono").val(), correo: $("#txtEmail").val() },
+                    data: { nombre: $("#txtNombre").val(), apellido: $("#txtApellido").val(), fechaNacimiento: $("#txtFechadeNaciemiento").val(), sexo: $("#txtSexo option:selected").val(), direccion: $("#txtDireccion").val(), telefono: $("#txtTelefono").val(), correo: $("#txtEmail").val() },
                     success: function (row) {
                         alert("Paciente agregado con exito.");
                         $('#modalPaciente').modal('toggle');
@@ -179,8 +179,10 @@
                     data: { id: idPaciente},
                     success: function (row) {
                         $("#txtCodigo").val(row.ID);
+                        $("#txtNombre").val(row.NOMBRE);
                         $("#txtApellido").val(row.APELLIDO);
-                        $("#txtFechadenaciemiento").val(row.FECHA_NACIEMIENTO);
+                        alert(row.FECHA_NACIMIENTO);
+                        $("#txtFechadeNaciemiento").val(row.FECHA_NACIMIENTO);
                         $("#txtSexo").val(row.SEXO);
                         $("#txtDireccion").val(row.DIRECCION);
                         $("#txtTelefono").val(row.TELEFONO);

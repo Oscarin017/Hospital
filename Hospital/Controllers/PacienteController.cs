@@ -22,17 +22,17 @@ namespace Hospital.Controllers
             return Json(dato);
         }
 
-        public ActionResult obtenerPacientes(string nombre)
+        public ActionResult obtenerPacientes(int id = 0)
         {
             Entities model = new Entities();
-            if (nombre == "")
+            if (id == 0)
             {
                 var datos = (from m in model.PACIENTE where m.VISIBLE == true select m).ToList();
                 return Json(datos);
             }
             else
             {
-                var datos = (from m in model.PACIENTE where m.NOMBRE.Contains(nombre) && m.VISIBLE == true select m).ToList();
+                var datos = (from m in model.PACIENTE where m.ID == id && m.VISIBLE == true select m).ToList();
                 return Json(datos);
             }
         }
