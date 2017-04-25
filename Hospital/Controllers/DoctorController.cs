@@ -105,19 +105,20 @@ namespace Hospital.Controllers
             return Json(datos);
         }
 
-        public ActionResult agregarDoctor(string nombre, string apellido, string cedula, DateTime fechaNacimiento, string sexo, string direccion, string telefono, int[] especialidades)
+        public ActionResult agregarDoctor(string nombre = "", string apellido = "", string cedula = "", string fechaNacimiento = "", string sexo = "", string direccion = "", string telefono = "", int[] especialidades = null)
         {
             Entities model = new Entities();
             DOCTOR doctor = new DOCTOR();
             doctor.NOMBRE = nombre;
             doctor.APELLIDO = apellido;
             doctor.CEDULA = cedula;
-            doctor.FECHA_NACIMIENTO = fechaNacimiento;
+            doctor.FECHA_NACIMIENTO = DateTime.Parse(fechaNacimiento);
             doctor.SEXO = sexo;
             doctor.DIRECCION = direccion;
             doctor.TELEFONO = telefono;
             doctor.VISIBLE = true;
             model.DOCTOR.Add(doctor);
+            model.SaveChanges();
             foreach (int i in especialidades)
             {
                 DOCTOR_ESPECIALIDAD de = new DOCTOR_ESPECIALIDAD();
