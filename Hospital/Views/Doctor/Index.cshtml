@@ -123,175 +123,171 @@
             </div>
         </div>
         <script>
-                    $(".buscarEspecialidad").keyup(function () {
-                        cargarEspecialidad($(this), $("#" + $(this).data("control")));
-                    });
+            $(".buscarEspecialidad").keyup(function () {
+                cargarEspecialidad($(this), $("#" + $(this).data("control")));
+            });
 
-                    $(".container").on("click", ".especialidad", function (e) {
-                        e.preventDefault();
-                        var txt = $(this).data("control");
-                        $("#" + txt).val($(this).html());
-                        $("#" + txt).data("id", $(this).data("id"));
-                    });
+            $(".container").on("click", ".especialidad", function (e) {
+                e.preventDefault();
+                var txt = $(this).data("control");
+                $("#" + txt).val($(this).html());
+                $("#" + txt).data("id", $(this).data("id"));
+            });
 
-                    $("#formBuscar").submit(function (event) {
-                        event.preventDefault();
-                        cargarTabla();
-                    });
+            $("#formBuscar").submit(function (event) {
+                event.preventDefault();
+                cargarTabla();
+            });
 
-                    $("#btnAgregar").click(function () {
-                        modificarTituloModal("Agregar Doctor");
-                        $("#btnAgregarModal").css("display", "inline-block");
-                        $("#btnModificarModal").css("display", "none");
-                        $("#btnEliminarModal").css("display", "none");
-                    });
+            $("#btnAgregar").click(function () {
+                modificarTituloModal("Agregar Doctor");
+                $("#btnAgregarModal").css("display", "inline-block");
+                $("#btnModificarModal").css("display", "none");
+                $("#btnEliminarModal").css("display", "none");
+            });
 
-                    $(".container").on("click", ".btnVer", function () {
-                        modificarTituloModal("Doctor");
-                        $("#btnAgregarModal").css("display", "none");
-                        $("#btnModificarModal").css("display", "none");
-                        $("#btnEliminarModal").css("display", "none");
-                        cargarModal($(this).data("id"));
-                    });
+            $(".container").on("click", ".btnVer", function () {
+                modificarTituloModal("Doctor");
+                $("#btnAgregarModal").css("display", "none");
+                $("#btnModificarModal").css("display", "none");
+                $("#btnEliminarModal").css("display", "none");
+                cargarModal($(this).data("id"));
+            });
 
-                    $(".container").on("click", ".btnModificar", function () {
-                        modificarTituloModal("Modificar Doctor");
-                        $("#btnAgregarModal").css("display", "none");
-                        $("#btnModificarModal").css("display", "inline-block");
-                        $("#btnEliminarModal").css("display", "none");
-                        cargarModal($(this).data("id"));
-                    });
+            $(".container").on("click", ".btnModificar", function () {
+                modificarTituloModal("Modificar Doctor");
+                $("#btnAgregarModal").css("display", "none");
+                $("#btnModificarModal").css("display", "inline-block");
+                $("#btnEliminarModal").css("display", "none");
+                cargarModal($(this).data("id"));
+            });
 
-                    $(".container").on("click", ".btnEliminar", function () {
-                        modificarTituloModal("Eliminar Doctor");
-                        $("#btnAgregarModal").css("display", "none");
-                        $("#btnModificarModal").css("display", "none");
-                        $("#btnEliminarModal").css("display", "inline-block");
-                        cargarModal($(this).data("id"));
-                    });
+            $(".container").on("click", ".btnEliminar", function () {
+                modificarTituloModal("Eliminar Doctor");
+                $("#btnAgregarModal").css("display", "none");
+                $("#btnModificarModal").css("display", "none");
+                $("#btnEliminarModal").css("display", "inline-block");
+                cargarModal($(this).data("id"));
+            });
 
-                    $("#btnAgregarEspecialidad").click(function () {
-                        alert($("#txtEspecialidadModal").val());
-                        $("#tableEspecialidad tbody").prepend("<tr><td>" + $("#txtEspecialidadModal").val() + "</td><td><input type='button' class='btn btn-warning btnEliminarEspecilidad' data-id='" + $("#txtEspecialidadModal").data('id') + "' value='Eliminar' /></td></tr>");
-                        $("#txtEspecialidadModal").val("");
-                        $("#txtEspecialidadModal").data("id", "0");
-                    });
+            $("#btnAgregarEspecialidad").click(function () {
+                alert($("#txtEspecialidadModal").val());
+                $("#tableEspecialidad tbody").prepend("<tr><td>" + $("#txtEspecialidadModal").val() + "</td><td><input type='button' class='btn btn-warning btnEliminarEspecilidad' data-id='" + $("#txtEspecialidadModal").data('id') + "' value='Eliminar' /></td></tr>");
+                $("#txtEspecialidadModal").val("");
+                $("#txtEspecialidadModal").data("id", "0");
+            });
 
-                    $("#formDoctor").submit(function (event) {
-                        event.preventDefault();
-                        cargarTabla();
-                    });
+            $("#formDoctor").submit(function (event) {
+                event.preventDefault();
+                cargarTabla();
+            });
 
-                    $("#modalDoctor").on("hidden.bs.modal", function () {
-                        $("#txtCodigo").val("");
-                        $("#txtNombre").val("");
-                        $("#txtApellido").val("");
-                        $("#txtCedula").val("");
-                        $("#txtFechaNacimiento").val("");
-                        $("#selSexo").val("0");
-                        $("#txtDireccion").val("");
-                        $("#txtTelefono").val("");
-                        $("#tableEspecialidad tbody").empty();
-                        cargarTabla();
-                    });
+            $("#modalDoctor").on("hidden.bs.modal", function () {
+                $("#txtCodigo").val("");
+                $("#txtNombre").val("");
+                $("#txtApellido").val("");
+                $("#txtCedula").val("");
+                $("#txtFechaNacimiento").val("");
+                $("#selSexo").val("0");
+                $("#txtDireccion").val("");
+                $("#txtTelefono").val("");
+                $("#tableEspecialidad tbody").empty();
+                cargarTabla();
+            });
 
-                    $(".container").on("click", "#btnAgregarModal", function () {
-                        var especialidades = "";
-                        $("#tableEspecialidad > tbody  > tr").each(function () {
-                            var id = $(this).find(".btnEliminarEspecilidad").data("id");
-                            if (id > 0) {
-                                especialidades += " id: " + id + ",";
-                            }
-                        });
-                        especialidades = especialidades.substring(0, especialidades.length - 1);
-                        especialidades = "{ " + especialidades + " }";
-                    alert(JSON.stringify(especialidades));
+            $(".container").on("click", "#btnAgregarModal", function () {
+                var especialidades = [];
+                var iX = 0;
+                $("#tableEspecialidad > tbody  > tr").each(function () {
+                    var id = $(this).find(".btnEliminarEspecilidad").data("id");
+                    if (id > 0) {
+                        especialidades[iX] = parseInt(id);
+                        iX++;
+                    }
+                });              
+                $.ajax({
+                    url: "@Url.Action("agregarDoctor", "Doctor")",
+                    type: "POST",
+                    data: { nombre: $("#txtNombre").val(), apellido: $("#txtApellido").val(), cedula: $("#txtCedula").val(), fechaNacimiento: $("#txtFechaNacimiento").val(), sexo: $("#selSexo").val(), direccion: $("#txtDireccion").val(), telefono: $("#txtTelefono").val(), especialidades: especialidades },
+                    success: function (row) {
+                        alert("Doctor agregado con exito.");
+                        $('#modalDoctor').modal('toggle');
+                    }
+                });
+            });
 
-                        var data = { nombre: $("#txtNombre").val(), apellido: $("#txtApellido").val(), cedula: $("#txtCedula").val(), fechaNacimiento: $("#txtFechaNacimiento").val(""), sexo: $("#selSexo").val(), direccion: $("#txtDireccion").val(), telefono: $("#txtTelefono").val() };
-                        alert(JSON.stringify(data));
-                        $.ajax({
-                            url: "@Url.Action("agregarDoctor", "Doctor")",
-                            type: "POST",
-                            data: { nombre: $("#txtNombre").val(), apellido: $("#txtApellido").val(), cedula: $("#txtCedula").val(), fechaNacimiento: $("#txtFechaNacimiento").val(""), sexo: $("#selSexo").val(), direccion: $("#txtDireccion").val(), telefono: $("#txtTelefono").val() },
-                            success: function (row) {
-                                alert("Doctor agregado con exito.");
-                                $('#modalDoctor').modal('toggle');
-                            }
-                        });
-                    });
+            $(".container").on("click", "#btnModificarModal", function () {
+                $.ajax({
+                    url: "@Url.Action("modificarDoctor", "Doctor")",
+                    type: "POST",
+                    data: { id: $("#txtCodigo").val(), nombre: $("#txtNombre").val(), observaciones: $("#txtObservaciones").val(), visible: true},
+                    success: function (row) {
+                        alert("Producto modificado con exito.");
+                        $('#modalDoctor').modal('toggle');
+                    }
+                });
+            });
 
-                    $(".container").on("click", "#btnModificarModal", function () {
-                        $.ajax({
-                            url: "@Url.Action("modificarDoctor", "Doctor")",
-                            type: "POST",
-                            data: { id: $("#txtCodigo").val(), nombre: $("#txtNombre").val(), observaciones: $("#txtObservaciones").val(), visible: true},
-                            success: function (row) {
-                                alert("Producto modificado con exito.");
-                                $('#modalDoctor').modal('toggle');
-                            }
-                        });
-                    });
+            $(".container").on("click", "#btnEliminarModal", function () {
+                $.ajax({
+                    url: "@Url.Action("modificarDoctor", "Doctor")",
+                    type: "POST",
+                    data: { id: $("#txtCodigo").val(), nombre: $("#txtNombre").val(), observaciones: $("#txtObservaciones").val(), visible: false},
+                    success: function (row) {
+                        alert("Producto eliminado con exito.");
+                        $('#modalDoctor').modal('toggle');
+                    }
+                });
+            });
 
-                    $(".container").on("click", "#btnEliminarModal", function () {
-                        $.ajax({
-                            url: "@Url.Action("modificarDoctor", "Doctor")",
-                            type: "POST",
-                            data: { id: $("#txtCodigo").val(), nombre: $("#txtNombre").val(), observaciones: $("#txtObservaciones").val(), visible: false},
-                            success: function (row) {
-                                alert("Producto eliminado con exito.");
-                                $('#modalDoctor').modal('toggle');
-                            }
-                        });
-                    });
+            function cargarModal(idDoctor) {
+                $.ajax({
+                    url: "@Url.Action("obtenerDoctor", "Doctor")",
+                    type: "POST",
+                    data: { id: idDoctor},
+                    success: function (row) {
+                        $("#txtCodigo").val(row.ID);
+                        $("#txtNombre").val(row.NOMBRE);
+                        $("#txtApellido").val(row.APELLIDO);
+                        $("#txtCedula").val(row.CEDULA);
+                        $("#txtFechaNacimiento").val(row.FECHA_NACIMIENTO);
+                        $("#selSexo").val(row.SEXO);
+                        $("#txtDireccion").val(row.DIRECCION);
+                        $("#txtTelefono").val(row.TELEFONO);
+                    }
+                });
+            }
 
-                    function cargarModal(idDoctor) {
-                        $.ajax({
-                            url: "@Url.Action("obtenerDoctor", "Doctor")",
-                            type: "POST",
-                            data: { id: idDoctor},
-                            success: function (row) {
-                                $("#txtCodigo").val(row.ID);
-                                $("#txtNombre").val(row.NOMBRE);
-                                $("#txtApellido").val(row.APELLIDO);
-                                $("#txtCedula").val(row.CEDULA);
-                                $("#txtFechaNacimiento").val(row.FECHA_NACIMIENTO);
-                                $("#selSexo").val(row.SEXO);
-                                $("#txtDireccion").val(row.DIRECCION);
-                                $("#txtTelefono").val(row.TELEFONO);
-                            }
+            function cargarTabla() {
+                $("#tableDoctor tbody").empty();
+                $.ajax({
+                    url: "@Url.Action("obtenerDoctores", "Doctor")",
+                    type: "POST",
+                    data: { nombre: $("#txtBuscarNombre").val(), apellido: $("#txtBuscarApellido").val(), especialidad: $("#txtBuscarEspecialidad").data("id") ,sexo: $("#selBuscarSexo").val()},
+                    success: function (result) {
+                        $.each(result, function (index, row) {
+                            $("#tableDoctor").append("<tr><td>" + row.ID + "</td><td>" + row.NOMBRE + "</td><td>" + row.APELLIDO + "</td><td>" + row.CEDULA + "</td><td>" + row.SEXO + "</td><td><button data-id='" + row.ID + "' class='btn btn-info btnVer' data-toggle='modal' data-target='#modalDoctor'>Ver</button></td><td><button data-id='" + row.ID + "' class='btn btn-primary btnModificar' data-toggle='modal' data-target='#modalDoctor'>Modificar</button></td><td><button data-id='" + row.ID + "' class='btn btn-warning btnEliminar' data-toggle='modal' data-target='#modalDoctor'>Eliminar</button></td></tr>");
                         });
                     }
+                });
+            }
 
-                    function cargarTabla() {
-                        $("#tableDoctor tbody").empty();
-                        $.ajax({
-                            url: "@Url.Action("obtenerDoctores", "Doctor")",
-                            type: "POST",
-                            data: { nombre: $("#txtBuscarNombre").val(), apellido: $("#txtBuscarApellido").val(), especialidad: $("#txtBuscarEspecialidad").data("id") ,sexo: $("#selBuscarSexo").val()},
-                            success: function (result) {
-                                $.each(result, function (index, row) {
-                                    $("#tableDoctor").append("<tr><td>" + row.ID + "</td><td>" + row.NOMBRE + "</td><td>" + row.APELLIDO + "</td><td>" + row.CEDULA + "</td><td>" + row.SEXO + "</td><td><button data-id='" + row.ID + "' class='btn btn-info btnVer' data-toggle='modal' data-target='#modalDoctor'>Ver</button></td><td><button data-id='" + row.ID + "' class='btn btn-primary btnModificar' data-toggle='modal' data-target='#modalDoctor'>Modificar</button></td><td><button data-id='" + row.ID + "' class='btn btn-warning btnEliminar' data-toggle='modal' data-target='#modalDoctor'>Eliminar</button></td></tr>");
-                                });
-                            }
+            function cargarEspecialidad(txt, ul) {
+                ul.empty();
+                $.ajax({
+                    url: "@Url.Action("obtenerEspecialidades", "Doctor")",
+                    type: "POST",
+                    data: { nombre: txt.val() },
+                    success: function (result) {
+                        $.each(result, function (index, row) {
+                            ul.append("<li><a href='#' class='especialidad' data-id='" + row.ID + "' data-control='" + txt.attr('id') + "'>" + row.NOMBRE + "</a></li>");
                         });
                     }
+                });
+            }
 
-                    function cargarEspecialidad(txt, ul) {
-                        ul.empty();
-                        $.ajax({
-                            url: "@Url.Action("obtenerEspecialidades", "Doctor")",
-                            type: "POST",
-                            data: { nombre: txt.val() },
-                            success: function (result) {
-                                $.each(result, function (index, row) {
-                                    ul.append("<li><a href='#' class='especialidad' data-id='" + row.ID + "' data-control='" + txt.attr('id') + "'>" + row.NOMBRE + "</a></li>");
-                                });
-                            }
-                        });
-                    }
-
-                    $(document).ready(function () {
-                        cargarTabla();
-                    });
+            $(document).ready(function () {
+                cargarTabla();
+            });
         </script>
     @Html.Partial("_Footer")
