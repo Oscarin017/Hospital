@@ -15,26 +15,26 @@ namespace Hospital.Controllers
             return View();
         }
 
-        public ActionResult obtenerMedicamento(int id)
+        public ActionResult obtenerMedicamento(int id = 0)
         {
             Entities model = new Entities();
             var dato = (from m in model.MEDICAMENTO where m.ID == id select m).First();
             return Json(dato);
         }
 
-        public ActionResult obtenerMedicamentos(string nombre)
+        public ActionResult obtenerMedicamentos(string nombre = "")
         {
             Entities model = new Entities();
+            List<MEDICAMENTO> datos = new List<MEDICAMENTO>();
             if (nombre == "")
             {
-                var datos = (from m in model.MEDICAMENTO where m.VISIBLE == true select m).ToList();
-                return Json(datos);
+                datos = (from m in model.MEDICAMENTO where m.VISIBLE == true select m).ToList();
             }
             else
             {
-                var datos = (from m in model.MEDICAMENTO where m.NOMBRE.Contains(nombre) && m.VISIBLE == true select m).ToList();
-                return Json(datos);
+                datos = (from m in model.MEDICAMENTO where m.NOMBRE.Contains(nombre) && m.VISIBLE == true select m).ToList();
             }
+            return Json(datos);
         }
 
         public ActionResult agregarMedicamento(string nombre, string observaciones)

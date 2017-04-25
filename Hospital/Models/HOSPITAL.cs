@@ -14,24 +14,9 @@ namespace Hospital.Models
     
     public partial class HOSPITAL
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public HOSPITAL()
-        {
-            this.CONSULTA = new HashSet<CONSULTA>();
-            this.HOSPITAL_ESPECIALIDAD = new HashSet<HOSPITAL_ESPECIALIDAD>();
-            this.HOSPITAL_DOCTOR = new HashSet<HOSPITAL_DOCTOR>();
-        }
-    
         public int ID { get; set; }
         public string NOMBRE { get; set; }
         public string DIRECCION { get; set; }
         public Nullable<bool> VISIBLE { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CONSULTA> CONSULTA { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HOSPITAL_ESPECIALIDAD> HOSPITAL_ESPECIALIDAD { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HOSPITAL_DOCTOR> HOSPITAL_DOCTOR { get; set; }
     }
 }

@@ -14,22 +14,7 @@ namespace Hospital.Models
     
     public partial class RECETA
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RECETA()
-        {
-            this.CONSULTA = new HashSet<CONSULTA>();
-            this.DETALLE_RECETA = new HashSet<DETALLE_RECETA>();
-            this.VISITA = new HashSet<VISITA>();
-        }
-    
         public int ID { get; set; }
         public Nullable<bool> VISIBLE { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CONSULTA> CONSULTA { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DETALLE_RECETA> DETALLE_RECETA { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VISITA> VISITA { get; set; }
     }
 }

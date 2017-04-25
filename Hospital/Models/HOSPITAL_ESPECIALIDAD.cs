@@ -14,12 +14,6 @@ namespace Hospital.Models
     
     public partial class HOSPITAL_ESPECIALIDAD
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public HOSPITAL_ESPECIALIDAD()
-        {
-            this.INTERNADO = new HashSet<INTERNADO>();
-        }
-    
         public int ID { get; set; }
         public Nullable<int> CUARTOS { get; set; }
         public Nullable<int> CUARTOS_LIBRES { get; set; }
@@ -27,10 +21,5 @@ namespace Hospital.Models
         public Nullable<int> ID_HOSPITAL { get; set; }
         public Nullable<int> ID_ESPECIALIDAD { get; set; }
         public Nullable<bool> VISIBLE { get; set; }
-    
-        public virtual ESPECIALIDAD ESPECIALIDAD { get; set; }
-        public virtual HOSPITAL HOSPITAL { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<INTERNADO> INTERNADO { get; set; }
     }
 }

@@ -14,13 +14,6 @@ namespace Hospital.Models
     
     public partial class PACIENTE
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PACIENTE()
-        {
-            this.CONSULTA = new HashSet<CONSULTA>();
-            this.INTERNADO = new HashSet<INTERNADO>();
-        }
-    
         public int ID { get; set; }
         public string NOMBRE { get; set; }
         public string APELLIDO { get; set; }
@@ -30,10 +23,5 @@ namespace Hospital.Models
         public string TELEFONO { get; set; }
         public string CORREO_ELECTRONICO { get; set; }
         public Nullable<bool> VISIBLE { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CONSULTA> CONSULTA { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<INTERNADO> INTERNADO { get; set; }
     }
 }

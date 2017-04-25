@@ -444,10 +444,6 @@
           <Property Name="ID_PACIENTE" Type="Int32" />
           <Property Name="ID_RECETA" Type="Int32" />
           <Property Name="VISIBLE" Type="Boolean" />
-          <NavigationProperty Name="DOCTOR" Relationship="Self.FK__CONSULTA__ID_DOC__286302EC" FromRole="CONSULTA" ToRole="DOCTOR" />
-          <NavigationProperty Name="HOSPITAL" Relationship="Self.FK__CONSULTA__ID_HOS__276EDEB3" FromRole="CONSULTA" ToRole="HOSPITAL" />
-          <NavigationProperty Name="PACIENTE" Relationship="Self.FK__CONSULTA__ID_PAC__29572725" FromRole="CONSULTA" ToRole="PACIENTE" />
-          <NavigationProperty Name="RECETA" Relationship="Self.FK__CONSULTA__ID_REC__2A4B4B5E" FromRole="CONSULTA" ToRole="RECETA" />
         </EntityType>
         <EntityType Name="DETALLE_RECETA">
           <Key>
@@ -459,8 +455,6 @@
           <Property Name="CANTIDAD" Type="Int32" />
           <Property Name="DESCRIPCION" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="VISIBLE" Type="Boolean" />
-          <NavigationProperty Name="MEDICAMENTO" Relationship="Self.FK__DETALLE_R__ID_ME__36B12243" FromRole="DETALLE_RECETA" ToRole="MEDICAMENTO" />
-          <NavigationProperty Name="RECETA" Relationship="Self.FK__DETALLE_R__ID_RE__35BCFE0A" FromRole="DETALLE_RECETA" ToRole="RECETA" />
         </EntityType>
         <EntityType Name="DOCTOR">
           <Key>
@@ -475,10 +469,6 @@
           <Property Name="DIRECCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="TELEFONO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="VISIBLE" Type="Boolean" />
-          <NavigationProperty Name="CONSULTA" Relationship="Self.FK__CONSULTA__ID_DOC__286302EC" FromRole="DOCTOR" ToRole="CONSULTA" />
-          <NavigationProperty Name="DOCTOR_ESPECIALIDAD" Relationship="Self.FK__DOCTOR_ES__ID_DO__1DE57479" FromRole="DOCTOR" ToRole="DOCTOR_ESPECIALIDAD" />
-          <NavigationProperty Name="HOSPITAL_DOCTOR" Relationship="Self.FK__HOSPITAL___ID_DO__22AA2996" FromRole="DOCTOR" ToRole="HOSPITAL_DOCTOR" />
-          <NavigationProperty Name="VISITA" Relationship="Self.FK__VISITA__ID_DOCTO__30F848ED" FromRole="DOCTOR" ToRole="VISITA" />
         </EntityType>
         <EntityType Name="DOCTOR_ESPECIALIDAD">
           <Key>
@@ -488,8 +478,6 @@
           <Property Name="ID_DOCTOR" Type="Int32" />
           <Property Name="ID_ESPECIALIDAD" Type="Int32" />
           <Property Name="VISIBLE" Type="Boolean" />
-          <NavigationProperty Name="DOCTOR" Relationship="Self.FK__DOCTOR_ES__ID_DO__1DE57479" FromRole="DOCTOR_ESPECIALIDAD" ToRole="DOCTOR" />
-          <NavigationProperty Name="ESPECIALIDAD" Relationship="Self.FK__DOCTOR_ES__ID_ES__1ED998B2" FromRole="DOCTOR_ESPECIALIDAD" ToRole="ESPECIALIDAD" />
         </EntityType>
         <EntityType Name="ESPECIALIDAD">
           <Key>
@@ -498,8 +486,6 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="VISIBLE" Type="Boolean" />
-          <NavigationProperty Name="DOCTOR_ESPECIALIDAD" Relationship="Self.FK__DOCTOR_ES__ID_ES__1ED998B2" FromRole="ESPECIALIDAD" ToRole="DOCTOR_ESPECIALIDAD" />
-          <NavigationProperty Name="HOSPITAL_ESPECIALIDAD" Relationship="Self.FK__HOSPITAL___ID_ES__15502E78" FromRole="ESPECIALIDAD" ToRole="HOSPITAL_ESPECIALIDAD" />
         </EntityType>
         <EntityType Name="HOSPITAL">
           <Key>
@@ -509,9 +495,6 @@
           <Property Name="NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="DIRECCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="VISIBLE" Type="Boolean" />
-          <NavigationProperty Name="CONSULTA" Relationship="Self.FK__CONSULTA__ID_HOS__276EDEB3" FromRole="HOSPITAL" ToRole="CONSULTA" />
-          <NavigationProperty Name="HOSPITAL_ESPECIALIDAD" Relationship="Self.FK__HOSPITAL___ID_HO__145C0A3F" FromRole="HOSPITAL" ToRole="HOSPITAL_ESPECIALIDAD" />
-          <NavigationProperty Name="HOSPITAL_DOCTOR" Relationship="Self.FK__HOSPITAL___ID_HO__21B6055D" FromRole="HOSPITAL" ToRole="HOSPITAL_DOCTOR" />
         </EntityType>
         <EntityType Name="HOSPITAL_DOCTOR">
           <Key>
@@ -521,8 +504,6 @@
           <Property Name="ID_HOSPITAL" Type="Int32" />
           <Property Name="ID_DOCTOR" Type="Int32" />
           <Property Name="VISIBLE" Type="Boolean" />
-          <NavigationProperty Name="DOCTOR" Relationship="Self.FK__HOSPITAL___ID_DO__22AA2996" FromRole="HOSPITAL_DOCTOR" ToRole="DOCTOR" />
-          <NavigationProperty Name="HOSPITAL" Relationship="Self.FK__HOSPITAL___ID_HO__21B6055D" FromRole="HOSPITAL_DOCTOR" ToRole="HOSPITAL" />
         </EntityType>
         <EntityType Name="HOSPITAL_ESPECIALIDAD">
           <Key>
@@ -535,9 +516,6 @@
           <Property Name="ID_HOSPITAL" Type="Int32" />
           <Property Name="ID_ESPECIALIDAD" Type="Int32" />
           <Property Name="VISIBLE" Type="Boolean" />
-          <NavigationProperty Name="ESPECIALIDAD" Relationship="Self.FK__HOSPITAL___ID_ES__15502E78" FromRole="HOSPITAL_ESPECIALIDAD" ToRole="ESPECIALIDAD" />
-          <NavigationProperty Name="HOSPITAL" Relationship="Self.FK__HOSPITAL___ID_HO__145C0A3F" FromRole="HOSPITAL_ESPECIALIDAD" ToRole="HOSPITAL" />
-          <NavigationProperty Name="INTERNADO" Relationship="Self.FK__INTERNADO__ID_HO__2E1BDC42" FromRole="HOSPITAL_ESPECIALIDAD" ToRole="INTERNADO" />
         </EntityType>
         <EntityType Name="INTERNADO">
           <Key>
@@ -549,9 +527,6 @@
           <Property Name="ID_PACIENTE" Type="Int32" />
           <Property Name="ID_HOSPITAL_ESPECIALIDAD" Type="Int32" />
           <Property Name="VISIBLE" Type="Boolean" />
-          <NavigationProperty Name="HOSPITAL_ESPECIALIDAD" Relationship="Self.FK__INTERNADO__ID_HO__2E1BDC42" FromRole="INTERNADO" ToRole="HOSPITAL_ESPECIALIDAD" />
-          <NavigationProperty Name="PACIENTE" Relationship="Self.FK__INTERNADO__ID_PA__2D27B809" FromRole="INTERNADO" ToRole="PACIENTE" />
-          <NavigationProperty Name="VISITA" Relationship="Self.FK__VISITA__ID_INTER__31EC6D26" FromRole="INTERNADO" ToRole="VISITA" />
         </EntityType>
         <EntityType Name="MEDICAMENTO">
           <Key>
@@ -561,7 +536,6 @@
           <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="OBSERVACIONES" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="VISIBLE" Type="Boolean" />
-          <NavigationProperty Name="DETALLE_RECETA" Relationship="Self.FK__DETALLE_R__ID_ME__36B12243" FromRole="MEDICAMENTO" ToRole="DETALLE_RECETA" />
         </EntityType>
         <EntityType Name="PACIENTE">
           <Key>
@@ -576,8 +550,6 @@
           <Property Name="TELEFONO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="CORREO_ELECTRONICO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="VISIBLE" Type="Boolean" />
-          <NavigationProperty Name="CONSULTA" Relationship="Self.FK__CONSULTA__ID_PAC__29572725" FromRole="PACIENTE" ToRole="CONSULTA" />
-          <NavigationProperty Name="INTERNADO" Relationship="Self.FK__INTERNADO__ID_PA__2D27B809" FromRole="PACIENTE" ToRole="INTERNADO" />
         </EntityType>
         <EntityType Name="RECETA">
           <Key>
@@ -585,9 +557,6 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="VISIBLE" Type="Boolean" />
-          <NavigationProperty Name="CONSULTA" Relationship="Self.FK__CONSULTA__ID_REC__2A4B4B5E" FromRole="RECETA" ToRole="CONSULTA" />
-          <NavigationProperty Name="DETALLE_RECETA" Relationship="Self.FK__DETALLE_R__ID_RE__35BCFE0A" FromRole="RECETA" ToRole="DETALLE_RECETA" />
-          <NavigationProperty Name="VISITA" Relationship="Self.FK__VISITA__ID_RECET__32E0915F" FromRole="RECETA" ToRole="VISITA" />
         </EntityType>
         <EntityType Name="VISITA">
           <Key>
@@ -599,9 +568,6 @@
           <Property Name="ID_INTERNADO" Type="Int32" />
           <Property Name="ID_RECETA" Type="Int32" />
           <Property Name="VISIBLE" Type="Boolean" />
-          <NavigationProperty Name="DOCTOR" Relationship="Self.FK__VISITA__ID_DOCTO__30F848ED" FromRole="VISITA" ToRole="DOCTOR" />
-          <NavigationProperty Name="INTERNADO" Relationship="Self.FK__VISITA__ID_INTER__31EC6D26" FromRole="VISITA" ToRole="INTERNADO" />
-          <NavigationProperty Name="RECETA" Relationship="Self.FK__VISITA__ID_RECET__32E0915F" FromRole="VISITA" ToRole="RECETA" />
         </EntityType>
         <Association Name="FK__CONSULTA__ID_DOC__286302EC">
           <End Role="DOCTOR" Type="Self.DOCTOR" Multiplicity="0..1" />

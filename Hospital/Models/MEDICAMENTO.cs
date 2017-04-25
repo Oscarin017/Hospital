@@ -14,18 +14,9 @@ namespace Hospital.Models
     
     public partial class MEDICAMENTO
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MEDICAMENTO()
-        {
-            this.DETALLE_RECETA = new HashSet<DETALLE_RECETA>();
-        }
-    
         public int ID { get; set; }
         public string NOMBRE { get; set; }
         public string OBSERVACIONES { get; set; }
         public Nullable<bool> VISIBLE { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DETALLE_RECETA> DETALLE_RECETA { get; set; }
     }
 }

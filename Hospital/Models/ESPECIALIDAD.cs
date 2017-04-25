@@ -14,20 +14,8 @@ namespace Hospital.Models
     
     public partial class ESPECIALIDAD
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ESPECIALIDAD()
-        {
-            this.DOCTOR_ESPECIALIDAD = new HashSet<DOCTOR_ESPECIALIDAD>();
-            this.HOSPITAL_ESPECIALIDAD = new HashSet<HOSPITAL_ESPECIALIDAD>();
-        }
-    
         public int ID { get; set; }
         public string NOMBRE { get; set; }
         public Nullable<bool> VISIBLE { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DOCTOR_ESPECIALIDAD> DOCTOR_ESPECIALIDAD { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HOSPITAL_ESPECIALIDAD> HOSPITAL_ESPECIALIDAD { get; set; }
     }
 }

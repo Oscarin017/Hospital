@@ -73,8 +73,7 @@
                 $("#btnAgregarModal").css("display", "inlin  e-block");
                 $("#btnModificarModal").css("display", "none");
                 $("#btnEliminarModal").css("display", "none");
-                $("#txtMedicamento").attr('enabled', 'enabled');
-                $("#txtObservaciones").attr('enabled', 'enabled');
+                
             });
 
             $(".container").on("click", ".btnVer", function () {
@@ -82,8 +81,6 @@
                 $("#btnAgregarModal").css("display", "none");
                 $("#btnModificarModal").css("display", "none");
                 $("#btnEliminarModal").css("display", "none");
-                $("#txtMedicamento").attr('disabled', 'disabled');
-                $("#txtObservaciones").attr('disabled', 'disabled');
                 cargarModal($(this).data("id"));
             });
 
@@ -92,8 +89,6 @@
                 $("#btnAgregarModal").css("display", "none");
                 $("#btnModificarModal").css("display", "inline-block");
                 $("#btnEliminarModal").css("display", "none");
-                $("#txtMedicamento").attr('enabled', true);
-                $("#txtObservaciones").attr('enabled', true);
                 cargarModal($(this).data("id"));
             });
 
