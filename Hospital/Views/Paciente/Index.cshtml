@@ -198,7 +198,7 @@
                     data: { nombre: $("#txtBuscarNombre").val() },
                     success: function (result) {
                         $.each(result, function (index, row) {
-                            $("#tablePaciente").append("<tr><td>" + row.ID + "</td><td>" + row.NOMBRE + "</td><td>" + row.APELLIDO 0+ "</td><td>" + row.SEXO + "</td><td><button data-id='" + row.ID + "' class='btn btn-info btnVer' data-toggle='modal' data-target='#modalPaciente'>Ver</button></td><td><button data-id='" + row.ID + "' class='btn btn-primary btnModificar' data-toggle='modal' data-target='#modalPaciente'>Modificar</button></td><td><button data-id='" + row.ID + "' class='btn btn-warning btnEliminar' data-toggle='modal' data-target='#modalPaciente'>Eliminar</button></td></tr>");
+                            $("#tablePaciente").append("<tr><td>" + row.ID + "</td><td>" + row.NOMBRE + "</td><td>" + row.APELLIDO + "</td><td>" + row.SEXO + "</td><td><button data-id='" + row.ID + "' class='btn btn-info btnVer' data-toggle='modal' data-target='#modalPaciente'>Ver</button></td><td><button data-id='" + row.ID + "' class='btn btn-primary btnModificar' data-toggle='modal' data-target='#modalPaciente'>Modificar</button></td><td><button data-id='" + row.ID + "' class='btn btn-warning btnEliminar' data-toggle='modal' data-target='#modalPaciente'>Eliminar</button></td></tr>");
                         });
                     }
                 });
