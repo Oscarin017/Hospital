@@ -27,3 +27,32 @@ C:\Users\racso\Google Drive\Escuela\UTT\Octavo Cuatrimestre\Hospital\Hospital\bi
 C:\Users\racso\Google Drive\Escuela\UTT\Octavo Cuatrimestre\Hospital\Hospital\obj\Debug\Hospital.csprojResolveAssemblyReference.cache
 C:\Users\racso\Google Drive\Escuela\UTT\Octavo Cuatrimestre\Hospital\Hospital\obj\Debug\Hospital.dll
 C:\Users\racso\Google Drive\Escuela\UTT\Octavo Cuatrimestre\Hospital\Hospital\obj\Debug\Hospital.pdb
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\Hospital.dll.config
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\Hospital.dll
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\Hospital.pdb
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\EntityFramework.dll
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\EntityFramework.SqlServer.dll
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\System.Web.Helpers.dll
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\System.Web.Mvc.dll
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\System.Web.Razor.dll
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\System.Web.Webpages.dll
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\System.Web.Webpages.Razor.dll
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\EntityFramework.xml
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\EntityFramework.SqlServer.xml
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\System.Web.Razor.xml
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\System.Web.Webpages.xml
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\System.Web.Webpages.Razor.xml
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\System.Web.Helpers.xml
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\System.Web.Mvc.xml
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\es\System.Web.Razor.resources.dll
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\es\System.Web.Webpages.resources.dll
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\es\System.Web.Webpages.Deployment.resources.dll
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\es\System.Web.Webpages.Razor.resources.dll
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\es\System.Web.Helpers.resources.dll
+C:\Users\Meraz\Desktop\Hospital\Hospital\bin\es\System.Web.Mvc.resources.dll
+C:\Users\Meraz\Desktop\Hospital\Hospital\obj\Debug\Hospital.csprojResolveAssemblyReference.cache
+C:\Users\Meraz\Desktop\Hospital\Hospital\obj\Debug\Hospital.dll
+C:\Users\Meraz\Desktop\Hospital\Hospital\obj\Debug\Hospital.pdb
