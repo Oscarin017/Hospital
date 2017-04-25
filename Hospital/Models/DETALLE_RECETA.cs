@@ -20,8 +20,5 @@ namespace Hospital.Models
         public Nullable<int> CANTIDAD { get; set; }
         public string DESCRIPCION { get; set; }
         public Nullable<bool> VISIBLE { get; set; }
-    
-        public virtual MEDICAMENTO MEDICAMENTO { get; set; }
-        public virtual RECETA RECETA { get; set; }
     }
 }

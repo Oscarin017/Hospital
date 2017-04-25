@@ -14,15 +14,6 @@ namespace Hospital.Models
     
     public partial class DOCTOR
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DOCTOR()
-        {
-            this.CONSULTA = new HashSet<CONSULTA>();
-            this.DOCTOR_ESPECIALIDAD = new HashSet<DOCTOR_ESPECIALIDAD>();
-            this.HOSPITAL_DOCTOR = new HashSet<HOSPITAL_DOCTOR>();
-            this.VISITA = new HashSet<VISITA>();
-        }
-    
         public int ID { get; set; }
         public string NOMBRE { get; set; }
         public string APELLIDO { get; set; }
@@ -32,14 +23,5 @@ namespace Hospital.Models
         public string DIRECCION { get; set; }
         public string TELEFONO { get; set; }
         public Nullable<bool> VISIBLE { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CONSULTA> CONSULTA { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DOCTOR_ESPECIALIDAD> DOCTOR_ESPECIALIDAD { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HOSPITAL_DOCTOR> HOSPITAL_DOCTOR { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VISITA> VISITA { get; set; }
     }
 }

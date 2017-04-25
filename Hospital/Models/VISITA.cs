@@ -20,9 +20,5 @@ namespace Hospital.Models
         public Nullable<int> ID_INTERNADO { get; set; }
         public Nullable<int> ID_RECETA { get; set; }
         public Nullable<bool> VISIBLE { get; set; }
-    
-        public virtual DOCTOR DOCTOR { get; set; }
-        public virtual INTERNADO INTERNADO { get; set; }
-        public virtual RECETA RECETA { get; set; }
     }
 }
