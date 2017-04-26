@@ -22,18 +22,11 @@ namespace Hospital.Controllers
             return Json(dato);
         }
 
-        public ActionResult obtenerEspecialidadesDoctor(int id = 0)
+        public ActionResult obtenerDoctorEspecialidades(int id = 0)
         {
             Entities model = new Entities();
-            var datos = (from de in model.DOCTOR_ESPECIALIDAD where de.ID_DOCTOR == id && de.VISIBLE == true select de).ToList();
+            var datos = (from de in model.DOCTOR_ESPECIALIDAD join e in model.ESPECIALIDAD on de.ID_ESPECIALIDAD equals e.ID where de.ID_DOCTOR == id && de.VISIBLE == true select new { ID = de.ID, ID_DOCTOR = de.ID_DOCTOR, ID_ESPECIALIDAD = de.ID_ESPECIALIDAD, NOMBRE = e.NOMBRE, VISIBLE = de.VISIBLE }).ToList();
             return Json(datos);
-        }
-
-        public ActionResult obtenerEspecialidad(int id = 0)
-        {
-            Entities model = new Entities();
-            var dato = (from e in model.ESPECIALIDAD where e.ID == id select e).ToList();
-            return Json(dato);
         }
 
         public ActionResult obtenerDoctores(string nombre = "", string apellido = "", string sexo = "0", int especialidad = 0)
@@ -118,12 +111,12 @@ namespace Hospital.Controllers
             doctor.TELEFONO = telefono;
             doctor.VISIBLE = true;
             model.DOCTOR.Add(doctor);
-            foreach (int i in especialidades)
+            model.SaveChanges();
+            foreach (int id in especialidades)
             {
                 DOCTOR_ESPECIALIDAD de = new DOCTOR_ESPECIALIDAD();
-                ESPECIALIDAD especialidad = (from e in model.ESPECIALIDAD where e.ID == i select e).First();
                 de.ID_DOCTOR = doctor.ID;
-                de.ID_ESPECIALIDAD = especialidad.ID;
+                de.ID_ESPECIALIDAD = id;
                 de.VISIBLE = true;
                 model.DOCTOR_ESPECIALIDAD.Add(de);
             }
@@ -131,7 +124,7 @@ namespace Hospital.Controllers
             return Json(doctor);
         }
 
-        public ActionResult modificarDoctor(int id, string nombre, string apellido, string cedula, DateTime fechaNacimiento, string sexo, string direccion, string telefono, int[] especialidades, bool visible)
+        public ActionResult modificarDoctor(int id, string nombre, string apellido, string cedula, DateTime fechaNacimiento, string sexo, string direccion, string telefono, bool visible, int[] doctorEspecialidades = null, bool[] visibleDoctorEspecialidades = null, int[] especialidades = null)
         {
             Entities model = new Entities();
             var doctor = (from m in model.DOCTOR where m.ID == id select m).First();
@@ -143,6 +136,35 @@ namespace Hospital.Controllers
             doctor.DIRECCION = direccion;
             doctor.TELEFONO = telefono;
             doctor.VISIBLE = visible;
+            if (doctorEspecialidades != null)
+            {
+                for (int iX = 0; iX < doctorEspecialidades.Length; iX++)
+                {
+                    int iDE = doctorEspecialidades[iX];
+                    DOCTOR_ESPECIALIDAD doctorEspecialidad = (from de in model.DOCTOR_ESPECIALIDAD where de.ID == iDE select de).First();
+                    doctorEspecialidad.VISIBLE = visibleDoctorEspecialidades[iX];
+                }
+            }
+            if (especialidades != null)
+            {
+                foreach (int especialidad in especialidades)
+                {
+                    DOCTOR_ESPECIALIDAD doctorEspecialidad = new DOCTOR_ESPECIALIDAD();
+                    try
+                    {
+                        doctorEspecialidad = (from de in model.DOCTOR_ESPECIALIDAD where de.ID_DOCTOR == doctor.ID && de.ID_ESPECIALIDAD == especialidad select de).First();
+                    }
+                    catch (Exception ex)
+                    { }
+                    doctorEspecialidad.ID_DOCTOR = doctor.ID;
+                    doctorEspecialidad.ID_ESPECIALIDAD = especialidad;
+                    doctorEspecialidad.VISIBLE = true;
+                    if (doctorEspecialidad.ID == 0)
+                    {
+                        model.DOCTOR_ESPECIALIDAD.Add(doctorEspecialidad);
+                    }
+                }
+            }
             model.SaveChanges();
             return Json(doctor);
         }

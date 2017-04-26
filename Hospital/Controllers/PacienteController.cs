@@ -9,62 +9,76 @@ namespace Hospital.Controllers
 {
     public class PacienteController : Controller
     {
-        // GET: Doctor
+        // GET: Paciente
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult obtenerPaciente(int id)
+        public ActionResult obtenerPaciente(int id = 0)
         {
             Entities model = new Entities();
             var dato = (from m in model.PACIENTE where m.ID == id select m).First();
             return Json(dato);
         }
 
-        public ActionResult obtenerPacientes(string nombre)
+        public ActionResult obtenerPacientes(string nombre = "", string apellido = "")
         {
             Entities model = new Entities();
-            if (nombre == "")
+            List<PACIENTE> datos = new List<PACIENTE>();
+            if (nombre == "" && apellido == "")
             {
-                var datos = (from m in model.PACIENTE where m.VISIBLE == true select m).ToList();
-                return Json(datos);
+                datos = (from p in model.PACIENTE where p.VISIBLE == true select p).ToList();
             }
             else
             {
-                var datos = (from m in model.PACIENTE where m.NOMBRE.Contains(nombre) && m.VISIBLE == true select m).ToList();
-                return Json(datos);
+                if (nombre != "")
+                {
+                    datos = (from p in model.PACIENTE where p.NOMBRE.Contains(nombre) && p.VISIBLE == true select p).ToList();
+                }
+                if (apellido != "")
+                {
+                    if (datos.Count == 0)
+                    {
+                        datos = (from p in model.PACIENTE where p.NOMBRE.Contains(apellido) && p.VISIBLE == true select p).ToList();
+                    }
+                    else
+                    {
+                        datos = datos.Where(paciente => paciente.APELLIDO.Contains(apellido)).ToList();
+                    }
+                }
             }
+            return Json(datos);
         }
 
-        public ActionResult agregarPaciente(string nombre, string apellido, DateTime fechaNacimiento, string sexo, string direccion, string telefono, string correo)
+        public ActionResult agregarPaciente(string nombre, string apellido, string fechaNacimiento, string sexo, string direccion, string telefono, string correo)
         {
             Entities model = new Entities();
             PACIENTE paciente = new PACIENTE();
             paciente.NOMBRE = nombre;
             paciente.APELLIDO = apellido;
-            paciente.CORREO_ELECTRONICO = correo;
-            paciente.FECHA_NACIMIENTO = fechaNacimiento;
+            paciente.FECHA_NACIMIENTO = Convert.ToDateTime(fechaNacimiento);
             paciente.SEXO = sexo;
             paciente.DIRECCION = direccion;
             paciente.TELEFONO = telefono;
+            paciente.CORREO_ELECTRONICO = correo;
             paciente.VISIBLE = true;
             model.PACIENTE.Add(paciente);
             model.SaveChanges();
             return Json(paciente);
         }
 
-        public ActionResult modificarPaciente(int id, string nombre, string apellido, DateTime fechaNacimiento, string sexo, string direccion, string telefono, string correo, bool visible)
+        public ActionResult modificarPaciente(int id, string nombre, string apellido, string fechaNacimiento, string sexo, string direccion, string telefono, string correo, bool visible)
         {
             Entities model = new Entities();
             var paciente = (from m in model.PACIENTE where m.ID == id select m).First();
             paciente.NOMBRE = nombre;
             paciente.APELLIDO = apellido;
-            paciente.CORREO_ELECTRONICO = correo;
-            paciente.FECHA_NACIMIENTO = fechaNacimiento;
+            paciente.FECHA_NACIMIENTO = Convert.ToDateTime(fechaNacimiento);
             paciente.SEXO = sexo;
             paciente.DIRECCION = direccion;
             paciente.TELEFONO = telefono;
+            paciente.CORREO_ELECTRONICO = correo;
             paciente.VISIBLE = visible;
             model.SaveChanges();
             return Json(paciente);

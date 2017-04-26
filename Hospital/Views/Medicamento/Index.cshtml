@@ -52,9 +52,9 @@
             </div>
             <div class="modal-footer">
                 <div class="form-group">
-                    <input id="btnAgregarModal" type="submit" form="formCliente" class="btn btn-success" value="Agregar">
-                    <input id="btnModificarModal" type="submit" form="formCliente" class="btn btn-primary" value="Modificar">
-                    <input id="btnEliminarModal" type="submit" form="formCliente" class="btn btn-warning" value="Eliminar">
+                    <input id="btnAgregarModal" type="submit" form="formMedicamento" class="btn btn-success" value="Agregar">
+                    <input id="btnModificarModal" type="submit" form="formMedicamento" class="btn btn-primary" value="Modificar">
+                    <input id="btnEliminarModal" type="submit" form="formMedicamento" class="btn btn-warning" value="Eliminar">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
@@ -62,122 +62,122 @@
     </div>
 </div>
 <script>
-            $("#formBuscar").submit(function (event) {
-                event.preventDefault();
-                cargarTabla();
-            });
+    $("#formBuscar").submit(function (event) {
+        event.preventDefault();
+        cargarTabla();
+    });
 
 
-            $("#btnAgregar").click(function () {
-                modificarTituloModal("Agregar Medicamento");
-                $("#btnAgregarModal").css("display", "inlin  e-block");
-                $("#btnModificarModal").css("display", "none");
-                $("#btnEliminarModal").css("display", "none");
+    $("#btnAgregar").click(function () {
+        modificarTituloModal("Agregar Medicamento");
+        $("#btnAgregarModal").css("display", "inline-block");
+        $("#btnModificarModal").css("display", "none");
+        $("#btnEliminarModal").css("display", "none");
                 
-            });
+    });
 
-            $(".container").on("click", ".btnVer", function () {
-                modificarTituloModal("Medicamento");
-                $("#btnAgregarModal").css("display", "none");
-                $("#btnModificarModal").css("display", "none");
-                $("#btnEliminarModal").css("display", "none");
-                cargarModal($(this).data("id"));
-            });
+    $(".container").on("click", ".btnVer", function () {
+        modificarTituloModal("Medicamento");
+        $("#btnAgregarModal").css("display", "none");
+        $("#btnModificarModal").css("display", "none");
+        $("#btnEliminarModal").css("display", "none");
+        cargarModal($(this).data("id"));
+    });
 
-            $(".container").on("click", ".btnModificar", function () {
-                modificarTituloModal("Modificar Medicamento");
-                $("#btnAgregarModal").css("display", "none");
-                $("#btnModificarModal").css("display", "inline-block");
-                $("#btnEliminarModal").css("display", "none");
-                cargarModal($(this).data("id"));
-            });
+    $(".container").on("click", ".btnModificar", function () {
+        modificarTituloModal("Modificar Medicamento");
+        $("#btnAgregarModal").css("display", "none");
+        $("#btnModificarModal").css("display", "inline-block");
+        $("#btnEliminarModal").css("display", "none");
+        cargarModal($(this).data("id"));
+    });
 
-            $(".container").on("click", ".btnEliminar", function () {
-                modificarTituloModal("Eliminar Medicamento");
-                $("#btnAgregarModal").css("display", "none");
-                $("#btnModificarModal").css("display", "none");
-                $("#btnEliminarModal").css("display", "inline-block");
-                cargarModal($(this).data("id"));
-            });
+    $(".container").on("click", ".btnEliminar", function () {
+        modificarTituloModal("Eliminar Medicamento");
+        $("#btnAgregarModal").css("display", "none");
+        $("#btnModificarModal").css("display", "none");
+        $("#btnEliminarModal").css("display", "inline-block");
+        cargarModal($(this).data("id"));
+    });
 
-            $("#formMedicamento").submit(function (event) {
-                event.preventDefault();
-                cargarTabla();
-            });
+    $("#formMedicamento").submit(function (event) {
+        event.preventDefault();
+        cargarTabla();
+    });
 
-            $("#modalMedicamento").on("hidden.bs.modal", function () {
-                $("#txtCodigo").val("");
-                $("#txtMedicamento").val("");
-                $("#txtObservaciones").val("");
-                $("#modalMedicamento").attr("close");
-                cargarTabla();
-            });
+    $("#modalMedicamento").on("hidden.bs.modal", function () {
+        $("#txtCodigo").val("");
+        $("#txtMedicamento").val("");
+        $("#txtObservaciones").val("");
+        $("#modalMedicamento").attr("close");
+        cargarTabla();
+    });
 
-            $(".container").on("click", "#btnAgregarModal", function () {
-                $.ajax({
-                    url: "@Url.Action("agregarMedicamento", "Medicamento")",
-                    type: "POST",
-                    data: { nombre: $("#txtMedicamento").val(), observaciones: $("#txtObservaciones").val()},
-                    success: function (row) {
-                        alert("Medicamento agregado con exito.");
-                        $('#modalMedicamento').modal('toggle');
-                    }
-                });
-            });
+    $(".container").on("click", "#btnAgregarModal", function () {
+        $.ajax({
+            url: "@Url.Action("agregarMedicamento", "Medicamento")",
+            type: "POST",
+            data: { nombre: $("#txtMedicamento").val(), observaciones: $("#txtObservaciones").val()},
+            success: function (row) {
+                alert("Medicamento agregado con exito.");
+                $('#modalMedicamento').modal('toggle');
+            }
+        });
+    });
 
-            $(".container").on("click", "#btnModificarModal", function () {
-                $.ajax({
-                    url: "@Url.Action("modificarMedicamento", "Medicamento")",
-                    type: "POST",
-                    data: { id: $("#txtCodigo").val(), nombre: $("#txtMedicamento").val(), observaciones: $("#txtObservaciones").val(), visible: true},
-                    success: function (row) {
-                        alert("Medicamento modificado con exito.");
-                        $('#modalMedicamento').modal('toggle');
-                    }
-                });
-            });
+    $(".container").on("click", "#btnModificarModal", function () {
+        $.ajax({
+            url: "@Url.Action("modificarMedicamento", "Medicamento")",
+            type: "POST",
+            data: { id: $("#txtCodigo").val(), nombre: $("#txtMedicamento").val(), observaciones: $("#txtObservaciones").val(), visible: true},
+            success: function (row) {
+                alert("Medicamento modificado con exito.");
+                $('#modalMedicamento').modal('toggle');
+            }
+        });
+    });
 
-            $(".container").on("click", "#btnEliminarModal", function () {
-                $.ajax({
-                    url: "@Url.Action("modificarMedicamento", "Medicamento")",
-                    type: "POST",
-                    data: { id: $("#txtCodigo").val(), nombre: $("#txtMedicamento").val(), observaciones: $("#txtObservaciones").val(), visible: false},
-                    success: function (row) {
-                        alert("Medicamento eliminado con exito.");
-                        $('#modalMedicamento').modal('toggle');
-                    }
-                });
-            });
+    $(".container").on("click", "#btnEliminarModal", function () {
+        $.ajax({
+            url: "@Url.Action("modificarMedicamento", "Medicamento")",
+            type: "POST",
+            data: { id: $("#txtCodigo").val(), nombre: $("#txtMedicamento").val(), observaciones: $("#txtObservaciones").val(), visible: false},
+            success: function (row) {
+                alert("Medicamento eliminado con exito.");
+                $('#modalMedicamento').modal('toggle');
+            }
+        });
+    });
 
-            function cargarModal(idMedicamento) {
-                $.ajax({
-                    url: "@Url.Action("obtenerMedicamento", "Medicamento")",
-                    type: "POST",
-                    data: { id: idMedicamento},
-                    success: function (row) {
-                        $("#txtCodigo").val(row.ID);
-                        $("#txtMedicamento").val(row.NOMBRE);
-                        $("#txtObservaciones").val(row.OBSERVACIONES);
-                    }
+    function cargarModal(idMedicamento) {
+        $.ajax({
+            url: "@Url.Action("obtenerMedicamento", "Medicamento")",
+            type: "POST",
+            data: { id: idMedicamento},
+            success: function (row) {
+                $("#txtCodigo").val(row.ID);
+                $("#txtMedicamento").val(row.NOMBRE);
+                $("#txtObservaciones").val(row.OBSERVACIONES);
+            }
+        });
+    }
+
+    function cargarTabla() {
+            $("#tableMedicamento tbody").empty();
+        $.ajax({
+            url: "@Url.Action("obtenerMedicamentos", "Medicamento")",
+            type: "POST",
+            data: { nombre: $("#txtBuscarNombre").val() },
+            success: function (result) {
+                $.each(result, function (index, row) {
+                    $("#tableMedicamento").append("<tr><td>" + row.ID + "</td><td>" + row.NOMBRE + "</td><td><button data-id='" + row.ID + "' class='btn btn-info btnVer' data-toggle='modal' data-target='#modalMedicamento'>Ver</button></td><td><button data-id='" + row.ID + "' class='btn btn-primary btnModificar' data-toggle='modal' data-target='#modalMedicamento'>Modificar</button></td><td><button data-id='" + row.ID + "' class='btn btn-warning btnEliminar' data-toggle='modal' data-target='#modalMedicamento'>Eliminar</button></td></tr>");
                 });
             }
+        });
+    }
 
-            function cargarTabla() {
-                    $("#tableMedicamento tbody").empty();
-                $.ajax({
-                    url: "@Url.Action("obtenerMedicamentos", "Medicamento")",
-                    type: "POST",
-                    data: { nombre: $("#txtBuscarNombre").val() },
-                    success: function (result) {
-                        $.each(result, function (index, row) {
-                            $("#tableMedicamento").append("<tr><td>" + row.ID + "</td><td>" + row.NOMBRE + "</td><td><button data-id='" + row.ID + "' class='btn btn-info btnVer' data-toggle='modal' data-target='#modalMedicamento'>Ver</button></td><td><button data-id='" + row.ID + "' class='btn btn-primary btnModificar' data-toggle='modal' data-target='#modalMedicamento'>Modificar</button></td><td><button data-id='" + row.ID + "' class='btn btn-warning btnEliminar' data-toggle='modal' data-target='#modalMedicamento'>Eliminar</button></td></tr>");
-                        });
-                    }
-                });
-            }
-
-            $(document).ready(function () {
-                cargarTabla();
-            });
+    $(document).ready(function () {
+        cargarTabla();
+    });
 </script>
 @Html.Partial("_Footer")

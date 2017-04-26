@@ -15,14 +15,14 @@ namespace Hospital.Controllers
             return View();
         }
 
-        public ActionResult obtenerHospital(int id)
+        public ActionResult obtenerHospital(int id = 0)
         {
             Entities model = new Entities();
             var dato = (from h in model.HOSPITAL where h.ID == id select h).First();
             return Json(dato);
         }
 
-        public ActionResult obtenerHospitales(string nombre)
+        public ActionResult obtenerHospitales(string nombre = "")
         {
             Entities model = new Entities();
             if (nombre == "")

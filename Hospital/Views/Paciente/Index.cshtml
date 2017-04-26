@@ -7,6 +7,9 @@
         <input id="txtBuscarNombre" type="text" class="form-control" placeholder="Buscar por nombre">
     </div>
     <div class="input-group">
+        <input id="txtBuscarApellido" type="text" class="form-control" placeholder="Buscar por apellido">
+    </div>
+    <div class="input-group">
         <input id="btnBuscarPacientes" type="submit" class="btn btn btn-primary" value="Buscar">
     </div>
 </form>
@@ -40,7 +43,7 @@
                 <form id="formPaciente">
                     <div class="form-group">
                         <label for="txtCodigo">Codigo</label>
-                        <input id="txtCodigo" type="text" class="form-control" placeholder="Codigo" required>
+                        <input id="txtCodigo" type="text" class="form-control" placeholder="Codigo" disabled>
                     </div>
                     <div class="form-group">
                         <label for="txtNombre">Nombre</label>
@@ -48,17 +51,17 @@
                     </div>
                     <div class="form-group">
                         <label for="txtApellido">Apellido</label>
-                        <input id="txtApellido" type="text" class="form-control" placeholder="Nombre" required>
+                        <input id="txtApellido" type="text" class="form-control" placeholder="Apellido" required>
                     </div>
                     <div class="form-group">
-                        <label for="txtFechadeNacimiento">Fecha de nacimiento</label>
-                        <input id="txtFechadenaciemiento" type="date" class="form-control" placeholder="Nombre" required>
+                        <label for="txtFechaNacimiento">Fecha de nacimiento</label>
+                        <input id="txtFechaNaciemiento" type="date" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <select id="txtSexo">
-                            <option value="m" selected>Sexo</option>
-                            <option value="m">Masculino</option>
-                            <option value="f">Femenino</option>
+                        <select id="selSexo" class="form-control" required>
+                            <option value="0" disabled selected>Sexo</option>
+                            <option value="H">Hombre</option>
+                            <option value="M">Mujer</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -87,126 +90,132 @@
     </div>
 </div>
 <script>
-            $("#formBuscar").submit(function (event) {
-                event.preventDefault();
-                cargarTabla();
-            });
+    $("#formBuscar").submit(function (event) {
+        event.preventDefault();
+        cargarTabla();
+    });
 
 
-            $("#btnAgregar").click(function () {
-                modificarTituloModal("Agregar Paciente");
-                $("#btnAgregarModal").css("display", "inline-block");
-                $("#btnModificarModal").css("display", "none");
-                $("#btnEliminarModal").css("display", "none");
-            });
+    $("#btnAgregar").click(function () {
+        modificarTituloModal("Agregar Paciente");
+        $("#btnAgregarModal").css("display", "inline-block");
+        $("#btnModificarModal").css("display", "none");
+        $("#btnEliminarModal").css("display", "none");
+    });
 
-            $(".container").on("click", ".btnVer", function () {
-                modificarTituloModal("Paciente");
-                $("#btnAgregarModal").css("display", "none");
-                $("#btnModificarModal").css("display", "none");
-                $("#btnEliminarModal").css("display", "none");
-                cargarModal($(this).data("id"));
-            });
+    $(".container").on("click", ".btnVer", function () {
+        modificarTituloModal("Paciente");
+        $("#btnAgregarModal").css("display", "none");
+        $("#btnModificarModal").css("display", "none");
+        $("#btnEliminarModal").css("display", "none");
+        cargarModal($(this).data("id"));
+    });
 
-            $(".container").on("click", ".btnModificar", function () {
-                modificarTituloModal("Modificar Paciente");
-                $("#btnAgregarModal").css("display", "none");
-                $("#btnModificarModal").css("display", "inline-block");
-                $("#btnEliminarModal").css("display", "none");
-                cargarModal($(this).data("id"));
-            });
+    $(".container").on("click", ".btnModificar", function () {
+        modificarTituloModal("Modificar Paciente");
+        $("#btnAgregarModal").css("display", "none");
+        $("#btnModificarModal").css("display", "inline-block");
+        $("#btnEliminarModal").css("display", "none");
+        cargarModal($(this).data("id"));
+    });
 
-            $(".container").on("click", ".btnEliminar", function () {
-                modificarTituloModal("Eliminar Paciente");
-                $("#btnAgregarModal").css("display", "none");
-                $("#btnModificarModal").css("display", "none");
-                $("#btnEliminarModal").css("display", "inline-block");
-                cargarModal($(this).data("id"));
-            });
+    $(".container").on("click", ".btnEliminar", function () {
+        modificarTituloModal("Eliminar Paciente");
+        $("#btnAgregarModal").css("display", "none");
+        $("#btnModificarModal").css("display", "none");
+        $("#btnEliminarModal").css("display", "inline-block");
+        cargarModal($(this).data("id"));
+    });
 
-            $("#formPaciente").submit(function (event) {
-                event.preventDefault();
-                cargarTabla();
-            });
+    $("#formPaciente").submit(function (event) {
+        event.preventDefault();
+        cargarTabla();
+    });
 
-            $("#modalPaciente").on("hidden.bs.modal", function () {
-                $("#txtCodigo").val("");
-                $("#txtNombre").val("");
-                $("#txtObservaciones").val("");
-                cargarTabla();
-            });
+    $("#modalPaciente").on("hidden.bs.modal", function () {
+        $("#txtCodigo").val("");
+        $("#txtNombre").val("");
+        $("#txtApellido").val("");
+        $("#txtFechaNacimiento").val("");
+        $("#selSexo").val("0");
+        $("#txtDireccion").val("");
+        $("#txtTelefono").val("");
+        $("#txtEmail").val("");
+        cargarTabla();
+    });
 
-            $(".container").on("click", "#btnAgregarModal", function () {
-                $.ajax({
-                    url: "@Url.Action("agregarPaciente", "Paciente")",
-                    type: "POST",
-                    data: { nombre: $("#txtNombre").val(), apellido: $("#txtApellido").val(), fechaNacimiento: $("#txtFechadenacimiento").val(), sexo: $("#txtSexo option:selected").val(), direccion: $("#txtDireccion").val(), telefono: $("#txtTelefono").val(), correo: $("#txtEmail").val() },
-                    success: function (row) {
-                        alert("Paciente agregado con exito.");
-                        $('#modalPaciente').modal('toggle');
-                    }
-                });
-            });
+    $(".container").on("click", "#btnAgregarModal", function () {
+        $.ajax({
+            url: "@Url.Action("agregarPaciente", "Paciente")",
+            type: "POST",
+            data: { nombre: $("#txtNombre").val(), apellido: $("#txtApellido").val(), fechaNacimiento: $("#txtFechaNaciemiento").val(), sexo: $("#selSexo").val(), direccion: $("#txtDireccion").val(), telefono: $("#txtTelefono").val(), correo: $("#txtEmail").val() },
+            success: function (row) {
+                alert("Paciente agregado con exito.");
+                $('#modalPaciente').modal('toggle');
+            }
+        });
+    });
 
-            $(".container").on("click", "#btnModificarModal", function () {
-                $.ajax({
-                    url: "@Url.Action("modificarPaciente", "Paciente")",
-                    type: "POST",
-                    data: { nombre: $("#txtNombre").val(), apellido: $("#txtApellido").val(), fechaNacimiento: $("#txtFechadenacimiento").val(), sexo: $("#txtSexo option:selected").val(), direccion: $("#txtDireccion").val(), telefono: $("#txtTelefono").val(), correo: $("#txtEmail").val(), visible: true},
-                    success: function (row) {
-                        alert("Producto modificado con exito.");
-                        $('#modalPaciente').modal('toggle');
-                    }
-                });
-            });
+    $(".container").on("click", "#btnModificarModal", function () {
+        $.ajax({
+            url: "@Url.Action("modificarPaciente", "Paciente")",
+            type: "POST",
+            data: { id: $("#txtCodigo").val(), nombre: $("#txtNombre").val(), apellido: $("#txtApellido").val(), fechaNacimiento: $("#txtFechaNaciemiento").val(), sexo: $("#selSexo").val(), direccion: $("#txtDireccion").val(), telefono: $("#txtTelefono").val(), correo: $("#txtEmail").val(), visible: true },
+            success: function (row) {
+                alert("Paciente modificado con exito.");
+                $('#modalPaciente').modal('toggle');
+            }
+        });
+    });
 
-            $(".container").on("click", "#btnEliminarModal", function () {
-                $.ajax({
-                    url: "@Url.Action("modificarPaciente", "Paciente")",
-                    type: "POST",
-                    data: { nombre: $("#txtNombre").val(), apellido: $("#txtApellido").val(), fechaNacimiento: $("#txtFechadenacimiento").val(), sexo: $("#txtSexo option:selected").val(), direccion: $("#txtDireccion").val(), telefono: $("#txtTelefono").val(), correo: $("#txtEmail").val(), visible: false},
-                    success: function (row) {
-                        alert("Producto eliminado con exito.");
-                        $('#modalPaciente').modal('toggle');
-                    }
-                });
-            });
+    $(".container").on("click", "#btnEliminarModal", function () {
+        $.ajax({
+            url: "@Url.Action("modificarPaciente", "Paciente")",
+            type: "POST",
+            data: { id: $("#txtCodigo").val(), nombre: $("#txtNombre").val(), apellido: $("#txtApellido").val(), fechaNacimiento: $("#txtFechaNaciemiento").val(), sexo: $("#selSexo").val(), direccion: $("#txtDireccion").val(), telefono: $("#txtTelefono").val(), correo: $("#txtEmail").val(), visible: false },
+            success: function (row) {
+                alert("Paciente eliminado con exito.");
+                $('#modalPaciente').modal('toggle');
+            }
+        });
+    });
 
-            function cargarModal(idPaciente) {
-                $.ajax({
-                    url: "@Url.Action("obtenerPaciente", "Paciente")",
-                    type: "POST",
-                    data: { id: idPaciente},
-                    success: function (row) {
-                        $("#txtCodigo").val(row.ID);
-                        $("#txtApellido").val(row.APELLIDO);
-                        $("#txtFechadenaciemiento").val(row.FECHA_NACIEMIENTO);
-                        $("#txtSexo").val(row.SEXO);
-                        $("#txtDireccion").val(row.DIRECCION);
-                        $("#txtTelefono").val(row.TELEFONO);
-                        $("#txtEmail").val(row.CORREO_ELECTRONICO);
-                     
-                    }
+    function cargarModal(idPaciente) {
+        $.ajax({
+            url: "@Url.Action("obtenerPaciente", "Paciente")",
+            type: "POST",
+            data: { id: idPaciente},
+            success: function (row) {
+                $("#txtCodigo").val(row.ID);
+                $("#txtNombre").val(row.NOMBRE);
+                $("#txtApellido").val(row.APELLIDO);
+                console.log(obtenerInputDate(row.FECHA_NACIMIENTO));
+                $("#txtFechaNaciemiento").val(obtenerInputDate(row.FECHA_NACIMIENTO));
+                $("#selSexo").val(row.SEXO);
+                $("#txtDireccion").val(row.DIRECCION);
+                $("#txtTelefono").val(row.TELEFONO);
+                $("#txtEmail").val(row.CORREO_ELECTRONICO);
+            }
+        });
+    }
+
+    function cargarTabla() {
+        $("#tablePaciente tbody").empty();
+        $.ajax({
+            url: "@Url.Action("obtenerPacientes", "Paciente")",
+            type: "POST",
+            data: { nombre: $("#txtBuscarNombre").val(), apellido: $("#txtBuscarApellido").val() },
+            success: function (result) {
+                $.each(result, function (index, row) {
+                    $("#tablePaciente").append("<tr><td>" + row.ID + "</td><td>" + row.NOMBRE + "</td><td>" + row.APELLIDO + "</td><td>" + row.SEXO + "</td><td><button data-id='" + row.ID + "' class='btn btn-info btnVer' data-toggle='modal' data-target='#modalPaciente'>Ver</button></td><td><button data-id='" + row.ID + "' class='btn btn-primary btnModificar' data-toggle='modal' data-target='#modalPaciente'>Modificar</button></td><td><button data-id='" + row.ID + "' class='btn btn-warning btnEliminar' data-toggle='modal' data-target='#modalPaciente'>Eliminar</button></td></tr>");
                 });
             }
+        });
+    }
 
-            function cargarTabla() {
-                $("#tablePaciente tbody").empty();
-                $.ajax({
-                    url: "@Url.Action("obtenerPacientes", "Paciente")",
-                    type: "POST",
-                    data: { nombre: $("#txtBuscarNombre").val() },
-                    success: function (result) {
-                        $.each(result, function (index, row) {
-                            $("#tablePaciente").append("<tr><td>" + row.ID + "</td><td>" + row.NOMBRE + "</td><td>" + row.APELLIDO + "</td><td>" + row.SEXO + "</td><td><button data-id='" + row.ID + "' class='btn btn-info btnVer' data-toggle='modal' data-target='#modalPaciente'>Ver</button></td><td><button data-id='" + row.ID + "' class='btn btn-primary btnModificar' data-toggle='modal' data-target='#modalPaciente'>Modificar</button></td><td><button data-id='" + row.ID + "' class='btn btn-warning btnEliminar' data-toggle='modal' data-target='#modalPaciente'>Eliminar</button></td></tr>");
-                        });
-                    }
-                });
-            }
-
-            $(document).ready(function () {
-                cargarTabla();
-            });
+    $(document).ready(function () {
+        cargarTabla();
+    });
 </script>
 @Html.Partial("_Footer")
 

@@ -52,9 +52,9 @@
             </div>
             <div class="modal-footer">
                 <div class="form-group">
-                    <input id="btnAgregarModal" type="submit" form="formCliente" class="btn btn-success" value="Agregar">
-                    <input id="btnModificarModal" type="submit" form="formCliente" class="btn btn-primary" value="Modificar">
-                    <input id="btnEliminarModal" type="submit" form="formCliente" class="btn btn-warning" value="Eliminar">
+                    <input id="btnAgregarModal" type="submit" form="formHospital" class="btn btn-success" value="Agregar">
+                    <input id="btnModificarModal" type="submit" form="formHospital" class="btn btn-primary" value="Modificar">
+                    <input id="btnEliminarModal" type="submit" form="formHospital" class="btn btn-warning" value="Eliminar">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
@@ -62,120 +62,120 @@
     </div>
 </div>
 <script>
-            $("#formBuscar").submit(function (event) {
-                event.preventDefault();
-                cargarTabla();
-            });
+    $("#formBuscar").submit(function (event) {
+        event.preventDefault();
+        cargarTabla();
+    });
 
 
-            $("#btnAgregar").click(function () {
-                modificarTituloModal("Agregar Hospital");
-                $("#btnAgregarModal").css("display", "inline-block");
-                $("#btnModificarModal").css("display", "none");
-                $("#btnEliminarModal").css("display", "none");
-            });
+    $("#btnAgregar").click(function () {
+        modificarTituloModal("Agregar Hospital");
+        $("#btnAgregarModal").css("display", "inline-block");
+        $("#btnModificarModal").css("display", "none");
+        $("#btnEliminarModal").css("display", "none");
+    });
 
-            $(".container").on("click", ".btnVer", function () {
-                modificarTituloModal("Hospital");
-                $("#btnAgregarModal").css("display", "none");
-                $("#btnModificarModal").css("display", "none");
-                $("#btnEliminarModal").css("display", "none");
-                cargarModal($(this).data("id"));
-            });
+    $(".container").on("click", ".btnVer", function () {
+        modificarTituloModal("Hospital");
+        $("#btnAgregarModal").css("display", "none");
+        $("#btnModificarModal").css("display", "none");
+        $("#btnEliminarModal").css("display", "none");
+        cargarModal($(this).data("id"));
+    });
 
-            $(".container").on("click", ".btnModificar", function () {
-                modificarTituloModal("Modificar Hospital");
-                $("#btnAgregarModal").css("display", "none");
-                $("#btnModificarModal").css("display", "inline-block");
-                $("#btnEliminarModal").css("display", "none");
-                cargarModal($(this).data("id"));
-            });
+    $(".container").on("click", ".btnModificar", function () {
+        modificarTituloModal("Modificar Hospital");
+        $("#btnAgregarModal").css("display", "none");
+        $("#btnModificarModal").css("display", "inline-block");
+        $("#btnEliminarModal").css("display", "none");
+        cargarModal($(this).data("id"));
+    });
 
-            $(".container").on("click", ".btnEliminar", function () {
-                modificarTituloModal("Eliminar Hospital");
-                $("#btnAgregarModal").css("display", "none");
-                $("#btnModificarModal").css("display", "none");
-                $("#btnEliminarModal").css("display", "inline-block");
-                cargarModal($(this).data("id"));
-            });
+    $(".container").on("click", ".btnEliminar", function () {
+        modificarTituloModal("Eliminar Hospital");
+        $("#btnAgregarModal").css("display", "none");
+        $("#btnModificarModal").css("display", "none");
+        $("#btnEliminarModal").css("display", "inline-block");
+        cargarModal($(this).data("id"));
+    });
 
-            $("#formHospital").submit(function (event) {
-                event.preventDefault();
-                cargarTabla();
-            });
+    $("#formHospital").submit(function (event) {
+        event.preventDefault();
+        cargarTabla();
+    });
 
-            $("#modalHospital").on("hidden.bs.modal", function () {
-                $("#txtCodigo").val("");
-                $("#txtNombre").val("");
-                $("#txtDireccion").val("");
-                cargarTabla();
-            });
+    $("#modalHospital").on("hidden.bs.modal", function () {
+        $("#txtCodigo").val("");
+        $("#txtNombre").val("");
+        $("#txtDireccion").val("");
+        cargarTabla();
+    });
 
-            $(".container").on("click", "#btnAgregarModal", function () {
-                $.ajax({
-                    url: "@Url.Action("agregarHospital", "Hospital")",
-                    type: "POST",
-                    data: { nombre: $("#txtNombre").val(), direccion: $("#txtDireccion").val()},
-                    success: function (row) {
-                        alert("Hospital agregado con exito.");
-                        $('#modalHospital').modal('toggle');
-                    }
-                });
-            });
+    $(".container").on("click", "#btnAgregarModal", function () {
+        $.ajax({
+            url: "@Url.Action("agregarHospital", "Hospital")",
+            type: "POST",
+            data: { nombre: $("#txtNombre").val(), direccion: $("#txtDireccion").val()},
+            success: function (row) {
+                alert("Hospital agregado con exito.");
+                $('#modalHospital').modal('toggle');
+            }
+        });
+    });
 
-            $(".container").on("click", "#btnModificarModal", function () {
-                $.ajax({
-                    url: "@Url.Action("modificarHospital", "Hospital")",
-                    type: "POST",
-                    data: { id: $("#txtCodigo").val(), nombre: $("#txtNombre").val(), direccion: $("#txtDireccion").val(), visible: true},
-                    success: function (row) {
-                        alert("Hospital modificado con exito.");
-                        $('#modalHospital').modal('toggle');
-                    }
-                });
-            });
+    $(".container").on("click", "#btnModificarModal", function () {
+        $.ajax({
+            url: "@Url.Action("modificarHospital", "Hospital")",
+            type: "POST",
+            data: { id: $("#txtCodigo").val(), nombre: $("#txtNombre").val(), direccion: $("#txtDireccion").val(), visible: true},
+            success: function (row) {
+                alert("Hospital modificado con exito.");
+                $('#modalHospital').modal('toggle');
+            }
+        });
+    });
 
-            $(".container").on("click", "#btnEliminarModal", function () {
-                $.ajax({
-                    url: "@Url.Action("modificarHospital", "Hospital")",
-                    type: "POST",
-                    data: { id: $("#txtCodigo").val(), nombre: $("#txtNombre").val(), direccion: $("#txtDireccion").val(), visible: false},
-                    success: function (row) {
-                        alert("Hospital eliminado con exito.");
-                        $('#modalHospital').modal('toggle');
-                    }
-                });
-            });
+    $(".container").on("click", "#btnEliminarModal", function () {
+        $.ajax({
+            url: "@Url.Action("modificarHospital", "Hospital")",
+            type: "POST",
+            data: { id: $("#txtCodigo").val(), nombre: $("#txtNombre").val(), direccion: $("#txtDireccion").val(), visible: false},
+            success: function (row) {
+                alert("Hospital eliminado con exito.");
+                $('#modalHospital').modal('toggle');
+            }
+        });
+    });
 
-            function cargarModal(idHospital) {
-                $.ajax({
-                    url: "@Url.Action("obtenerHospital", "Hospital")",
-                    type: "POST",
-                    data: { id: idHospital},
-                    success: function (row) {
-                        $("#txtCodigo").val(row.ID);
-                        $("#txtNombre").val(row.NOMBRE);
-                        $("#txtDireccion").val(row.DIRECCION);
-                    }
+    function cargarModal(idHospital) {
+        $.ajax({
+            url: "@Url.Action("obtenerHospital", "Hospital")",
+            type: "POST",
+            data: { id: idHospital},
+            success: function (row) {
+                $("#txtCodigo").val(row.ID);
+                $("#txtNombre").val(row.NOMBRE);
+                $("#txtDireccion").val(row.DIRECCION);
+            }
+        });
+    }
+
+    function cargarTabla() {
+        $("#tableHospital tbody").empty();
+        $.ajax({
+            url: "@Url.Action("obtenerHospitales", "Hospital")",
+            type: "POST",
+            data: { nombre: $("#txtBuscarNombre").val() },
+            success: function (result) {
+                $.each(result, function (index, row) {
+                    $("#tableHospital").append("<tr><td>" + row.ID + "</td><td>" + row.NOMBRE + "</td><td><button data-id='" + row.ID + "' class='btn btn-info btnVer' data-toggle='modal' data-target='#modalHospital'>Ver</button></td><td><button data-id='" + row.ID + "' class='btn btn-primary btnModificar' data-toggle='modal' data-target='#modalHospital'>Modificar</button></td><td><button data-id='" + row.ID + "' class='btn btn-warning btnEliminar' data-toggle='modal' data-target='#modalHospital'>Eliminar</button></td></tr>");
                 });
             }
+        });
+    }
 
-            function cargarTabla() {
-                    $("#tableHospital tbody").empty();
-                $.ajax({
-                    url: "@Url.Action("obtenerHospitales", "Hospital")",
-                    type: "POST",
-                    data: { nombre: $("#txtBuscarNombre").val() },
-                    success: function (result) {
-                        $.each(result, function (index, row) {
-                            $("#tableHospital").append("<tr><td>" + row.ID + "</td><td>" + row.NOMBRE + "</td><td><button data-id='" + row.ID + "' class='btn btn-info btnVer' data-toggle='modal' data-target='#modalHospital'>Ver</button></td><td><button data-id='" + row.ID + "' class='btn btn-primary btnModificar' data-toggle='modal' data-target='#modalHospital'>Modificar</button></td><td><button data-id='" + row.ID + "' class='btn btn-warning btnEliminar' data-toggle='modal' data-target='#modalHospital'>Eliminar</button></td></tr>");
-                        });
-                    }
-                });
-            }
-
-            $(document).ready(function () {
-                cargarTabla();
-            });
+    $(document).ready(function () {
+        cargarTabla();
+    });
 </script>
 @Html.Partial("_Footer")

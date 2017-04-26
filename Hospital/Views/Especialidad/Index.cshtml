@@ -58,118 +58,117 @@
     </div>
 </div>
 <script>
-            $("#formBuscar").submit(function (event) {
-                event.preventDefault();
-                cargarTabla();
-            });
+    $("#formBuscar").submit(function (event) {
+        event.preventDefault();
+        cargarTabla();
+    });
 
+    $("#btnAgregar").click(function () {
+        modificarTituloModal("Agregar Especialidad");
+        $("#btnAgregarModal").css("display", "inline-block");
+        $("#btnModificarModal").css("display", "none");
+        $("#btnEliminarModal").css("display", "none");
+    });
 
-            $("#btnAgregar").click(function () {
-                modificarTituloModal("Agregar Especialidad");
-                $("#btnAgregarModal").css("display", "inline-block");
-                $("#btnModificarModal").css("display", "none");
-                $("#btnEliminarModal").css("display", "none");
-            });
+    $(".container").on("click", ".btnVer", function () {
+        modificarTituloModal("Especialidad");
+        $("#btnAgregarModal").css("display", "none");
+        $("#btnModificarModal").css("display", "none");
+        $("#btnEliminarModal").css("display", "none");
+        cargarModal($(this).data("id"));
+    });
 
-            $(".container").on("click", ".btnVer", function () {
-                modificarTituloModal("Especialidad");
-                $("#btnAgregarModal").css("display", "none");
-                $("#btnModificarModal").css("display", "none");
-                $("#btnEliminarModal").css("display", "none");
-                cargarModal($(this).data("id"));
-            });
+    $(".container").on("click", ".btnModificar", function () {
+        modificarTituloModal("Modificar Especialidad");
+        $("#btnAgregarModal").css("display", "none");
+        $("#btnModificarModal").css("display", "inline-block");
+        $("#btnEliminarModal").css("display", "none");
+        cargarModal($(this).data("id"));
+    });
 
-            $(".container").on("click", ".btnModificar", function () {
-                modificarTituloModal("Modificar Especialidad");
-                $("#btnAgregarModal").css("display", "none");
-                $("#btnModificarModal").css("display", "inline-block");
-                $("#btnEliminarModal").css("display", "none");
-                cargarModal($(this).data("id"));
-            });
+    $(".container").on("click", ".btnEliminar", function () {
+        modificarTituloModal("Eliminar Especialidad");
+        $("#btnAgregarModal").css("display", "none");
+        $("#btnModificarModal").css("display", "none");
+        $("#btnEliminarModal").css("display", "inline-block");
+        cargarModal($(this).data("id"));
+    });
 
-            $(".container").on("click", ".btnEliminar", function () {
-                modificarTituloModal("Eliminar Especialidad");
-                $("#btnAgregarModal").css("display", "none");
-                $("#btnModificarModal").css("display", "none");
-                $("#btnEliminarModal").css("display", "inline-block");
-                cargarModal($(this).data("id"));
-            });
+    $("#formEspecialidad").submit(function (event) {
+        event.preventDefault();
+        cargarTabla();
+    });
 
-            $("#formEspecialidad").submit(function (event) {
-                event.preventDefault();
-                cargarTabla();
-            });
+    $("#modalEspecialidad").on("hidden.bs.modal", function () {
+        $("#txtCodigo").val("");
+        $("#txtNombre").val("");
+        cargarTabla();
+    });
 
-            $("#modalEspecialidad").on("hidden.bs.modal", function () {
-                $("#txtCodigo").val("");
-                $("#txtNombre").val("");
-                cargarTabla();
-            });
+    $(".container").on("click", "#btnAgregarModal", function () {
+        $.ajax({
+            url: "@Url.Action("agregarEspecialidad", "Especialidad")",
+            type: "POST",
+            data: { nombre: $("#txtNombre").val()},
+            success: function (row) {
+                alert("Especialidad agregada con exito.");
+                $('#modalEspecialidad').modal('toggle');
+            }
+        });
+    });
 
-            $(".container").on("click", "#btnAgregarModal", function () {
-                $.ajax({
-                    url: "@Url.Action("agregarEspecialidad", "Especialidad")",
-                    type: "POST",
-                    data: { nombre: $("#txtNombre").val()},
-                    success: function (row) {
-                        alert("Especialidad agregada con exito.");
-                        $('#modalEspecialidad').modal('toggle');
-                    }
-                });
-            });
+    $(".container").on("click", "#btnModificarModal", function () {
+        $.ajax({
+            url: "@Url.Action("modificarEspecialidad", "Especialidad")",
+            type: "POST",
+            data: { id: $("#txtCodigo").val(), nombre: $("#txtNombre").val(), visible: true},
+            success: function (row) {
+                alert("Especialidad modificada con exito.");
+                $('#modalEspecialidad').modal('toggle');
+            }
+        });
+    });
 
-            $(".container").on("click", "#btnModificarModal", function () {
-                $.ajax({
-                    url: "@Url.Action("modificarEspecialidad", "Especialidad")",
-                    type: "POST",
-                    data: { id: $("#txtCodigo").val(), nombre: $("#txtNombre").val(), visible: true},
-                    success: function (row) {
-                        alert("Especialidad modificada con exito.");
-                        $('#modalEspecialidad').modal('toggle');
-                    }
-                });
-            });
+    $(".container").on("click", "#btnEliminarModal", function () {
+        $.ajax({
+            url: "@Url.Action("modificarEspecialidad", "Especialidad")",
+            type: "POST",
+            data: { id: $("#txtCodigo").val(), nombre: $("#txtNombre").val(), visible: false},
+            success: function (row) {
+                alert("Especialidad eliminada con exito.");
+                $('#modalEspecialidad').modal('toggle');
+            }
+        });
+    });
 
-            $(".container").on("click", "#btnEliminarModal", function () {
-                $.ajax({
-                    url: "@Url.Action("modificarEspecialidad", "Especialidad")",
-                    type: "POST",
-                    data: { id: $("#txtCodigo").val(), nombre: $("#txtNombre").val(), visible: false},
-                    success: function (row) {
-                        alert("Especialidad eliminada con exito.");
-                        $('#modalEspecialidad').modal('toggle');
-                    }
-                });
-            });
+    function cargarModal(idEspecialidad) {
+        $.ajax({
+            url: "@Url.Action("obtenerEspecialidad", "Especialidad")",
+            type: "POST",
+            data: { id: idEspecialidad},
+            success: function (row) {
+                $("#txtCodigo").val(row.ID);
+                $("#txtNombre").val(row.NOMBRE);
+            }
+        });
+    }
 
-            function cargarModal(idEspecialidad) {
-                $.ajax({
-                    url: "@Url.Action("obtenerEspecialidad", "Especialidad")",
-                    type: "POST",
-                    data: { id: idEspecialidad},
-                    success: function (row) {
-                        $("#txtCodigo").val(row.ID);
-                        $("#txtNombre").val(row.NOMBRE);
-                    }
+    function cargarTabla() {
+            $("#tableEspecialidad tbody").empty();
+        $.ajax({
+            url: "@Url.Action("obtenerEspecialidades", "Especialidad")",
+            type: "POST",
+            data: { nombre: $("#txtBuscarNombre").val() },
+            success: function (result) {
+                $.each(result, function (index, row) {
+                    $("#tableEspecialidad").append("<tr><td>" + row.ID + "</td><td>" + row.NOMBRE + "</td><td><button data-id='" + row.ID + "' class='btn btn-info btnVer' data-toggle='modal' data-target='#modalEspecialidad'>Ver</button></td><td><button data-id='" + row.ID + "' class='btn btn-primary btnModificar' data-toggle='modal' data-target='#modalEspecialidad'>Modificar</button></td><td><button data-id='" + row.ID + "' class='btn btn-warning btnEliminar' data-toggle='modal' data-target='#modalEspecialidad'>Eliminar</button></td></tr>");
                 });
             }
+        });
+    }
 
-            function cargarTabla() {
-                    $("#tableEspecialidad tbody").empty();
-                $.ajax({
-                    url: "@Url.Action("obtenerEspecialidades", "Especialidad")",
-                    type: "POST",
-                    data: { nombre: $("#txtBuscarNombre").val() },
-                    success: function (result) {
-                        $.each(result, function (index, row) {
-                            $("#tableEspecialidad").append("<tr><td>" + row.ID + "</td><td>" + row.NOMBRE + "</td><td><button data-id='" + row.ID + "' class='btn btn-info btnVer' data-toggle='modal' data-target='#modalEspecialidad'>Ver</button></td><td><button data-id='" + row.ID + "' class='btn btn-primary btnModificar' data-toggle='modal' data-target='#modalEspecialidad'>Modificar</button></td><td><button data-id='" + row.ID + "' class='btn btn-warning btnEliminar' data-toggle='modal' data-target='#modalEspecialidad'>Eliminar</button></td></tr>");
-                        });
-                    }
-                });
-            }
-
-            $(document).ready(function () {
-                cargarTabla();
-            });
+    $(document).ready(function () {
+        cargarTabla();
+    });
 </script>
 @Html.Partial("_Footer")
